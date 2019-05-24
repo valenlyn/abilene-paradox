@@ -1,4 +1,20 @@
+const uuidv4 = require('uuid/v4');
+
 module.exports = (db) => {
+
+    let index = (request, response) => {
+
+        let abileneUser;
+
+        if (!request.cookies.abileneUser) {
+            abileneUser =  uuidv4();
+            response.cookie('abileneUser', abileneUser);
+            response.send({userCookie: abileneUser});
+        } else {
+            abileneUser = request.cookies.abileneUser;
+             response.send({userCookie: abileneUser});
+        }
+    }
 
   let getAll = (request, response) => {
 
@@ -14,7 +30,17 @@ module.exports = (db) => {
     });
   };
 
+    let newRoom = (request, response) => {
+
+        console.log(request.query);
+        response.send(request.query);
+
+  };
+
+
   return {
-    getAll: getAll
+    getAll: getAll,
+    newRoom: newRoom,
+    index: index
   };
 };
