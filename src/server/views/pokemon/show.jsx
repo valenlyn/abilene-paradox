@@ -6,7 +6,14 @@ class Pokemon extends React.Component {
       <html>
         <head />
         <body>
-          <div id="app">
+          <div>
+            <p>HI BITCHY</p>
+            <form method="POST" action="/new">
+
+                    <input type="text" name="topic" autoFocus/>
+
+                <button type="submit" class="form-btn">Submit</button>
+            </form>
           </div>
         </body>
       </html>

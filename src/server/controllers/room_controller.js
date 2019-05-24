@@ -8,34 +8,53 @@ module.exports = (db) => {
 
         const doneWithQuery = (error, result) => {
 
-            console.log("************** RESULT FROM CONTROLLER *************");
-            console.log("****************************************************");
-            console.log(result);
-            console.log(result[0].url);
-            console.log("****************************************************");
-            console.log("****************************************************");
-
             // response.send({result: result});
             response.cookie('room', result[0].url);
-            response.redirect('/room');
+            response.redirect(`/room/${result[0].url}`);
+            // response.body({ url: result[0].url });
 
         }
+
+        console.log("******************REQUEST BODY**************************");
+        console.log("****************************************************");
+        console.log(request.body);
+
         let data = {
-            topic: request.body.name,
+            topic: request.body.topic,
             url: uniqueUrl
         }
 
         db.room.queryNewRoom(data, doneWithQuery);
 
-  };
+    };
 
-  let blank = (request, response) => {
-    response.render('pokemon/show');
-  }
+    let getRoom = (request, response) => {
+
+        const doneWithQuery = (error, result) => {
+
+        console.log("************reult from controller***********");
+        console.log(result)
+        console.log("************reult from controller***********");
+        response.send(result);
+
+        }
+
+        let data = {
+            queryUrl: request.params.id,
+        }
+
+        console.log("************data***********");
+        console.log(data);
+        console.log("***************************");
+
+
+        db.room.querySpecificRoom(data, doneWithQuery);
+
+    };
 
 
   return {
     newRoom: newRoom,
-    blank: blank
+    getRoom
   };
 };

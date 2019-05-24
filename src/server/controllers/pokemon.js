@@ -4,16 +4,19 @@ module.exports = (db) => {
 
     let index = (request, response) => {
 
-        let abileneUser;
+        // let abileneUser;
+        response.render('pokemon/show');
 
-        if (!request.cookies.abileneUser) {
-            abileneUser =  uuidv4();
-            response.cookie('abileneUser', abileneUser);
-            response.send({userCookie: abileneUser});
-        } else {
-            abileneUser = request.cookies.abileneUser;
-             response.send({userCookie: abileneUser});
-        }
+        // if (!request.cookies.abileneUser) {
+        //     abileneUser =  uuidv4();
+        //     response.cookie('abileneUser', abileneUser);
+        //     // response.send({userCookie: abileneUser});
+        // } else {
+        //     abileneUser = request.cookies.abileneUser;
+        //      // response.send({userCookie: abileneUser});
+        // }
+
+
     }
 
   let getAll = (request, response) => {
