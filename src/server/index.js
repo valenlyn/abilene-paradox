@@ -24,6 +24,7 @@ app.set('env', process.env.NODE_ENV);
 
 // Set up middleware
 app.use(methodOverride('_method'));
+app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({
   extended: true

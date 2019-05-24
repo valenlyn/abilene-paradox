@@ -4,23 +4,23 @@
  * ===========================================
  */
 module.exports = (dbPoolInstance) => {
-  // `dbPoolInstance` is accessible within this function scope
 
-  let getAll = (callback) => {
+  let queryNewRoom = (data, callback) => {
 
-    dbPoolInstance.query(`SELECT * FROM rooms`, (error, queryResult) => {
+    dbPoolInstance.query(`INSERT INTO rooms (url, topic) VALUES ('${data.url}', '${data.topic}') RETURNING *`, (error, queryResult) => {
       if (error) {
         // invoke callback function with results after query has executed
         callback(error, null);
       } else {
         // invoke callback function with results after query has executed
 
-        callback(null, queryResult.rows );
+        callback( null, queryResult.rows );
+
       }
     });
   };
 
   return {
-    getAll
+    queryNewRoom
   };
 };

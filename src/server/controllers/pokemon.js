@@ -30,17 +30,9 @@ module.exports = (db) => {
     });
   };
 
-    let newRoom = (request, response) => {
-
-        console.log(request.query);
-        response.send(request.query);
-
-  };
-
 
   return {
     getAll: getAll,
-    newRoom: newRoom,
     index: index
   };
 };

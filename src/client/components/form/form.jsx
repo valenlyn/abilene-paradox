@@ -3,15 +3,8 @@ import styles from './style.scss';
 
 class Form extends React.Component {
 
-    // clickHandler(e) {
-    //     alert("u CLICKED ME");
-    // }
 
-    clickHandler = (e) => {
-        alert("u clockos moi");
-
-        fetch(`/test?topic=hahaha&url=123214354`).then(res=>res.json());
-    }
+    // fetch(`/test?topic=hahaha&url=123214354`).then(res=>res.json());
 
     // OK create an actual form here
 
@@ -19,8 +12,8 @@ class Form extends React.Component {
 
         return (
           <div>
-            <input />
-            <button onClick={this.clickHandler}>Create new rom</button>
+            <input value={this.props.roomName} onChange={this.props.roomInput} />
+            <button onClick={this.props.submitRoom}>Create new rom</button>
           </div>
         );
         }
