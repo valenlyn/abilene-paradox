@@ -7,7 +7,7 @@ class AddAnother extends React.Component {
     render() {
 
         return (
-          <button onClick={this.props.addAnother}>+</button>
+          <button onClick={this.props.addAnother} id={this.props.id}>+</button>
         );
         }
     }

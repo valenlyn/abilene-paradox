@@ -10,8 +10,8 @@ class Interest extends React.Component {
         return (
           <div className={styles.interest}>
 
-            <input type="radio" name="interestGroup" value="2" onChange={this.props.interestChangeHandler}/> 😊
-            <input type="radio" name="interestGroup" value="3" onChange={this.props.interestChangeHandler}/> 😍
+            <input type="radio" name={this.props.id} value="2" onChange={this.props.interestChangeHandler}/> 😊
+            <input type="radio" name={this.props.id} value="3" onChange={this.props.interestChangeHandler}/> 😍
 
           </div>
         );

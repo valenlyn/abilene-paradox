@@ -20,7 +20,7 @@ class Room extends React.Component {
                 },
             options: [],
             rowsArray: [],
-            newRow: false
+            newRow: false,
         }
 
         this.routeParam = props.match.params.id;
@@ -54,6 +54,10 @@ class Room extends React.Component {
     }
 
     optionSubmitHandler = (e) => {
+        this.sendOptionsPostRequest();
+    }
+
+    sendOptionsPostRequest(){
         fetch(`/room/${this.routeParam}`,{
             method: 'POST',
             headers: {
@@ -72,22 +76,29 @@ class Room extends React.Component {
     }
 
     addAnotherHandler = (e) => {
+        this.sendOptionsPostRequest();
+        this.setState({ options: [...this.state.options, this.state.current]});
         this.setState({ rowsArray: [...this.state.rowsArray, "component"]});
     }
 
     renderRows = () => {
 
         return (
-        this.state.rowsArray.map(row => <React.Fragment>
-            <Option optionValue={this.state.newOption} optionInputHandler={this.inputChangeHandler}/>
-            <Interest interestChangeHandler={this.interestChangeHandler} />
-            <AddAnother addAnother={this.addAnotherHandler} />
-            </React.Fragment>)
+        this.state.rowsArray.map((row, i) =>
+            <div>
+            <Option optionValue={this.state.newOption} optionInputHandler={this.inputChangeHandler} id={i+1}/>
+            <Interest interestChangeHandler={this.interestChangeHandler} id={i+1} />
+            <AddAnother addAnother={this.addAnotherHandler} id={i+1} />
+            </div>)
         )
     }
 
     componentDidMount(){
         this.setLocalStorageUserId();
+    }
+
+    handleOptionUnmount = (e) => {
+        alert("ss");
     }
 
     render() {
@@ -97,8 +108,6 @@ class Room extends React.Component {
         let whatsAppLink = `https://wa.me/?text=${roomUrl} %0A ${invitationMessage}`;
         let telegramLink = `https://telegram.me/share/url?url=${roomUrl}&text=${invitationMessage}`
 
-
-
         return (
           <React.Fragment>
               <div>
@@ -107,11 +116,10 @@ class Room extends React.Component {
                 <a href={telegramLink} target="_blank" rel="noopener noreferrer">Share to Telegram</a>
               </div>
 
-            <Option optionValue={this.state.newOption} optionInputHandler={this.inputChangeHandler}/>
+
+            <Option optionValue={this.state.newOption} optionInputHandler={this.inputChangeHandler} unmountMe={this.handleOptionUnmount} />
             <Interest interestChangeHandler={this.interestChangeHandler}/>
             <AddAnother addAnother={this.addAnotherHandler} />
-
-            { this.state.newRow && <><Option optionValue={this.state.newOption} optionInputHandler={this.inputChangeHandler}/> <Interest interestChangeHandler={this.interestChangeHandler} /> <AddAnother addAnother={this.addAnotherHandler} /></> }
 
             {this.renderRows()}
 
