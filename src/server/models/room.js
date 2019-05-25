@@ -39,18 +39,27 @@ module.exports = (dbPoolInstance) => {
 
   let createOptions = (data, callback) => {
 
-    console.log("************DATA FROM MODEL********");
-    console.log(data);
-    console.log("************************************");
 
-     dbPoolInstance.query(`SELECT * FROM rooms WHERE url='${data.queryUrl}'`, (error, queryResult) => {
+     dbPoolInstance.query(`INSERT INTO options (option, room_id, user_id) VALUES ('${data.option}', '${data.room_id}', '${data.user_id}') RETURNING id`, (error, queryResult) => {
+
       if (error) {
-        // invoke callback function with results after query has executed
-        callback(error, null);
-      } else {
-        // invoke callback function with results after query has executed
 
-        callback( null, queryResult.rows );
+        callback(error, null);
+
+      } else {
+
+            dbPoolInstance.query(`INSERT INTO ratings (rating, user_id, option_id) VALUES ('${data.rating}', '${data.user_id}', '${queryResult.rows[0].id}')`, (errorTwo, queryResultTwo) => {
+
+                if (errorTwo) {
+
+                    callback(errorTwo, null);
+
+                } else {
+
+                    callback( null, queryResultTwo.rows );
+
+                }
+            })
 
       }
     });
