@@ -22,9 +22,17 @@ class Room extends React.Component {
 
     render() {
 
+        let invitationMessage = this.state.topic + " Let's decide!";
+        let roomUrl = `/room/${this.routeParam}`;
+        let whatsAppLink = `https://wa.me/?text=${roomUrl} %0A ${invitationMessage}`;
+        let telegramLink = `https://telegram.me/share/url?url=${roomUrl}&text=${invitationMessage}`
+
         return (
           <div>
             <p>Topic: {this.state.topic}</p>
+            <p><a href={whatsAppLink} target="_blank" rel="noopener noreferrer">Share to WhatsApp</a></p>
+            <a href={telegramLink} target="_blank" rel="noopener noreferrer">Share to Telegram</a>
+
           </div>
         );
         }
