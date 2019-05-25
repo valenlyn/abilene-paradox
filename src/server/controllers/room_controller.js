@@ -32,9 +32,6 @@ module.exports = (db) => {
 
         const doneWithQuery = (error, result) => {
 
-        console.log("************reult from controller***********");
-        console.log(result)
-        console.log("************reult from controller***********");
         response.send(result);
 
         }
@@ -43,18 +40,35 @@ module.exports = (db) => {
             queryUrl: request.params.id,
         }
 
-        console.log("************data***********");
-        console.log(data);
-        console.log("***************************");
-
 
         db.room.querySpecificRoom(data, doneWithQuery);
 
     };
 
+    let sendOptions = (request, response) => {
+
+        const doneWithQuery = (error, result) => {
+
+        response.send(result);
+
+        }
+
+        let data = {
+            option: request.body.options,
+            room_id: request.body.room_id,
+            user_id: request.body.user_id
+        }
+
+        db.room.createOptions(data, doneWithQuery);
+
+
+
+    }
+
 
   return {
     newRoom: newRoom,
-    getRoom
+    getRoom,
+    sendOptions
   };
 };

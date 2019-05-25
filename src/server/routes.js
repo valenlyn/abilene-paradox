@@ -8,4 +8,6 @@ module.exports = (app, db) => {
   app.post('/new', room.newRoom);
   app.get('/roominfo/:id', room.getRoom);
 
+  app.post('/room/:id', room.sendOptions);
+
 };
