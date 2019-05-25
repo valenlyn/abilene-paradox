@@ -22,8 +22,6 @@ module.exports = (dbPoolInstance) => {
 
   let querySpecificRoom = (data, callback) => {
 
-
-
     dbPoolInstance.query(`SELECT * FROM rooms WHERE url='${data.queryUrl}'`, (error, queryResult) => {
       if (error) {
         // invoke callback function with results after query has executed

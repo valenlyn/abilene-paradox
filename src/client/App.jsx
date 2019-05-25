@@ -6,6 +6,8 @@ import Counter from './components/counter/counter';
 import Form from './components/form/form';
 import Room from './components/room/room';
 import Index from './components/index/index';
+import Vote from './components/vote/vote';
+
 
 class App extends React.Component {
 
@@ -15,7 +17,8 @@ class App extends React.Component {
 
         <Router>
             <Route exact path="/" component={Index} />
-            <Route path="/room/:id" component={Room} />
+            <Route exact path="/room/:id" component={Room} />
+            <Route path="/room/:id/vote" component={Vote} />
         </Router>
 
       </div>

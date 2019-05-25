@@ -6,8 +6,16 @@ class Interest extends React.Component {
 
     render() {
 
+        let radio1;
         let radio2;
         let radio3;
+        let vetoRadio;
+
+        if (this.props.veto) {
+            vetoRadio = (<React.Fragment><input type="radio" name="input" value="1" onChange={this.props.interestChangeHandler} checked={radio1} /> 🤮</React.Fragment>)
+        } else {
+            vetoRadio = '';
+        }
 
         if (this.props.checked && this.props.whichIsChecked === "2") {
             radio2 = true;
@@ -22,6 +30,7 @@ class Interest extends React.Component {
         return (
           <div className={styles.interest}>
 
+            {vetoRadio}
             <input type="radio" name="input" value="2" onChange={this.props.interestChangeHandler} checked={radio2} /> 😊
             <input type="radio" name="input" value="3" onChange={this.props.interestChangeHandler} checked={radio3} /> 😍
 

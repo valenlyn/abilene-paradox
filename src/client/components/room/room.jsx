@@ -56,6 +56,7 @@ class Room extends React.Component {
 
     optionSubmitHandler = (e) => {
         this.sendOptionsPostRequest();
+        window.location = `/room/${this.routeParam}/vote`;
     }
 
     sendOptionsPostRequest(){
