@@ -4,7 +4,8 @@ import {withRouter} from 'react-router-dom';
 import Option from './option/option.jsx';
 import Interest from './interest/interest.jsx';
 import Submit from './submit/submit.jsx';
-import AddAnother from './addanother/addanother.jsx'
+import AddAnother from './addanother/addanother.jsx';
+import DisplayOption from './displayoption/displayoption.jsx'
 import uuid from "uuid";
 
 
@@ -19,8 +20,7 @@ class Room extends React.Component {
                     optionInterest: '',
                 },
             options: [],
-            rowsArray: [],
-            newRow: false,
+            checkedRadio: false
         }
 
         this.routeParam = props.match.params.id;
@@ -51,6 +51,7 @@ class Room extends React.Component {
 
     interestChangeHandler = (e) => {
         this.setState({current: {...this.state.current, optionInterest: e.target.value}});
+        this.setState({checkedRadio: true})
     }
 
     optionSubmitHandler = (e) => {
@@ -66,8 +67,8 @@ class Room extends React.Component {
             body: JSON.stringify({
                 room_id: this.routeParam,
                 user_id: localStorage.getItem('user_id'),
-                options: this.state.current.optionName,
-                optionsInterest: this.state.current.optionInterest
+                option: this.state.current.optionName,
+                optionInterest: this.state.current.optionInterest
             })
         })
         .then(response => console.log(response))
@@ -78,28 +79,19 @@ class Room extends React.Component {
     addAnotherHandler = (e) => {
         this.sendOptionsPostRequest();
         this.setState({ options: [...this.state.options, this.state.current]});
-        this.setState({ rowsArray: [...this.state.rowsArray, "component"]});
+        this.setState({ current: {
+                    optionName: '',
+                    optionInterest: '',
+                }});
+        this.setState({ checkedRadio: false });
+
     }
 
-    renderRows = () => {
-
-        return (
-        this.state.rowsArray.map((row, i) =>
-            <div>
-            <Option optionValue={this.state.newOption} optionInputHandler={this.inputChangeHandler} id={i+1}/>
-            <Interest interestChangeHandler={this.interestChangeHandler} id={i+1} />
-            <AddAnother addAnother={this.addAnotherHandler} id={i+1} />
-            </div>)
-        )
-    }
 
     componentDidMount(){
         this.setLocalStorageUserId();
     }
 
-    handleOptionUnmount = (e) => {
-        alert("ss");
-    }
 
     render() {
 
@@ -117,14 +109,15 @@ class Room extends React.Component {
               </div>
 
 
-            <Option optionValue={this.state.newOption} optionInputHandler={this.inputChangeHandler} unmountMe={this.handleOptionUnmount} />
-            <Interest interestChangeHandler={this.interestChangeHandler}/>
+            <Option optionValue={this.state.current.optionName} optionInputHandler={this.inputChangeHandler} />
+            <Interest interestChangeHandler={this.interestChangeHandler} checked={this.state.checkedRadio} whichIsChecked={this.state.current.optionInterest}/>
+
             <AddAnother addAnother={this.addAnotherHandler} />
 
-            {this.renderRows()}
 
 
             <hr/>
+            <DisplayOption options={this.state.options} />
             <Submit submitOption={this.optionSubmitHandler} />
 
           </React.Fragment>

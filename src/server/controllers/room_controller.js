@@ -54,9 +54,10 @@ module.exports = (db) => {
         }
 
         let data = {
-            option: request.body.options,
+            option: request.body.option,
             room_id: request.body.room_id,
-            user_id: request.body.user_id
+            user_id: request.body.user_id,
+            rating: Number(request.body.optionInterest)
         }
 
         db.room.createOptions(data, doneWithQuery);

@@ -3,14 +3,6 @@ import styles from './style.scss';
 
 class Option extends React.Component {
 
-    constructor(){
-        super();
-    }
-
-    dismiss() {
-        this.props.unmountMe();
-    }
-
 
     render() {
 
