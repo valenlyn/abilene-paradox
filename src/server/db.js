@@ -2,6 +2,7 @@ const pg = require('pg');
 const pokemon = require('./models/pokemon');
 const room = require('./models/room');
 const option = require('./models/option');
+const rating = require('./models/rating');
 const url = require('url');
 
 var configs;
@@ -43,6 +44,7 @@ module.exports = {
   pokemon: pokemon(pool),
   room: room(pool),
   option: option(pool),
+  rating: rating(pool),
 
   //make queries directly from here
   queryInterface: (text, params, callback) => {
