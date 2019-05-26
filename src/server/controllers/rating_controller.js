@@ -8,6 +8,10 @@ module.exports = (db) => {
         const doneWithQuery = (error, result) => {
 
         response.send(result);
+        console.log("*********errrrrrrorrrr for sending ratings**********");
+        console.log(error);
+        console.log("****************************************************");
+
 
         }
 
