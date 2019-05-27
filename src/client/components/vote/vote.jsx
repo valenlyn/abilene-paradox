@@ -3,7 +3,6 @@ import {withRouter} from 'react-router-dom';
 import styles from './style.scss';
 import DisplayOther from './displayother/displayother';
 import DisplayOption from '../room/displayoption/displayoption';
-import DisplayOwn from './displayown/displayown';
 import uuid from 'uuid';
 
 class Vote extends React.Component {
@@ -71,19 +70,19 @@ class Vote extends React.Component {
     // }
 
     getRatings() {
-        console.log("getting options--rated");
+
         fetch(`/ratings/${this.routeParam}`)
         .then(res=>res.json()
-        .then(console.log(res))
+        // .then(console.log(res))
         .then(res=>this.setState({ratings:res})))
         .then(res=>this.getOptionsToVote() )
     }
 
     fetchOptions() {
-        console.log("getting options")
+
         fetch(`/options/${this.routeParam}`)
         .then(res=>res.json()
-        .then(console.log(res))
+        // .then(console.log(res))
         .then(res=>this.setState({options:res})))
         .then(res=> this.getRatings() )
     }

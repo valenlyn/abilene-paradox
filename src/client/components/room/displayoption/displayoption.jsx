@@ -5,9 +5,6 @@ class DisplayOption extends React.Component {
 
 
     render() {
-        console.log("----options here----")
-        console.log(this.props.options);
-        console.log("-------------------")
 
         let display = this.props.options.map((option, i) => {
 
