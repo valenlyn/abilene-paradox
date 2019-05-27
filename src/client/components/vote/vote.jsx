@@ -3,6 +3,7 @@ import {withRouter} from 'react-router-dom';
 import styles from './style.scss';
 import DisplayOther from './displayother/displayother';
 import DisplayOption from '../room/displayoption/displayoption';
+import Topic from '../general/topic/topic';
 import uuid from 'uuid';
 
 class Vote extends React.Component {
@@ -10,6 +11,7 @@ class Vote extends React.Component {
     constructor(props){
         super();
         this.state = {
+                    topic: '',
                     options: [],
                     ratings: [],
                     optionsToVote: [],
@@ -19,7 +21,6 @@ class Vote extends React.Component {
                     checkedRadio: false,
                     }
         this.routeParam = props.match.params.id;
-        this.setLocalStorageUserId();
     }
 
     setLocalStorageUserId(){
@@ -118,6 +119,12 @@ class Vote extends React.Component {
 
     componentDidMount() {
         this.fetchOptions();
+        this.setLocalStorageUserId();
+
+        fetch(`/roominfo/${this.routeParam}`)
+        .then(res=>res.json()
+        .then(console.log(res))
+        .then(res=>this.setState({topic:res[0].topic})));
     }
 
     render() {
@@ -152,10 +159,10 @@ class Vote extends React.Component {
         return (
 
             <React.Fragment>
-                <h1>It's time to vote 🤠</h1>
+                <Topic topic={this.state.topic} />
+                <center><button className={styles.refreshButton} onClick={this.refreshButtonHandler}>Refresh options</button></center>
                 <DisplayOther options={optionsUserHasNotVoted} interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.ratingType} optionId={this.state.selectedOptionId} />
 
-                <button onClick={this.refreshButtonHandler}>Refresh options</button>
                 <DisplayOption options={optionsUserHasVoted} />
                 <button onClick={this.redirectButtonHandler}>Next</button>
             </React.Fragment>

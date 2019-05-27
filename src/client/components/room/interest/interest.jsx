@@ -25,7 +25,7 @@ class Interest extends React.Component {
             vetoRadio = (
                 <div className={styles.moodWrapper}>
 
-                    <Radio
+                    <ColorRadio
                         type="radio"
                         id={this.props.id}
                         name={this.props.id}

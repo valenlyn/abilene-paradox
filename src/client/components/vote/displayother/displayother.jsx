@@ -21,7 +21,6 @@ class DisplayOther extends React.Component {
 
         return (
             <React.Fragment>
-                <h1>OTHER PEOPLE'S OPTIONS I YET 2 RATE</h1>
                 {optionsToVote}
             </React.Fragment>
 
