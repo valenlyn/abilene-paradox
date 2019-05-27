@@ -111,17 +111,23 @@ class Room extends React.Component {
                 <a href={telegramLink} target="_blank" rel="noopener noreferrer">Share to Telegram</a>
               </div>
 
+              <div className={styles.inputWrapper}>
 
-            <Option optionValue={this.state.current.optionName} optionInputHandler={this.inputChangeHandler} />
-            <Interest interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.selectedValue} id={this.state.selectedValue} optionId={this.state.selectedValue} />
+                <Option optionValue={this.state.current.optionName} optionInputHandler={this.inputChangeHandler} />
 
-            <AddAnother addAnother={this.addAnotherHandler} />
+                <Interest interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.selectedValue} id={this.state.selectedValue} optionId={this.state.selectedValue} />
+
+                <AddAnother addAnother={this.addAnotherHandler} />
+
+            </div>
 
 
 
             <hr/>
-            <DisplayOption options={this.state.options} />
-            <Submit submitOption={this.optionSubmitHandler} />
+
+                <DisplayOption options={this.state.options} />
+                <Submit submitOption={this.optionSubmitHandler} />
+
 
           </React.Fragment>
         );
