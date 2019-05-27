@@ -6,8 +6,8 @@ import Interest from './interest/interest.jsx';
 import Submit from './submit/submit.jsx';
 import AddAnother from './addanother/addanother.jsx';
 import DisplayOption from './displayoption/displayoption.jsx'
+import Share from '../share/share.jsx'
 import uuid from "uuid";
-
 
 class Room extends React.Component {
 
@@ -20,18 +20,18 @@ class Room extends React.Component {
                     optionInterest: '',
                 },
             options: [],
+            ratings: [],
+            optionsVoted: [],
             checkedRadio: false,
             selectedValue: ''
         }
 
         this.routeParam = props.match.params.id;
-        console.log(this.routeParam);
 
         fetch(`/roominfo/${this.routeParam}`)
         .then(res=>res.json()
         .then(console.log(res))
         .then(res=>this.setState({topic:res[0].topic})));
-
 
     }
 
@@ -75,26 +75,42 @@ class Room extends React.Component {
             })
         })
         .then(response => console.log(response))
+        .then(response=> this.getRatings())
         .then(json => console.log(json))
         .catch(error => console.log('Error: ', error))
     }
 
     addAnotherHandler = (e) => {
         this.sendOptionsPostRequest();
-        this.setState({ options: [...this.state.options, this.state.current]});
+        // this.setState({ options: [...this.state.options, this.state.current]});
         this.setState({ current: {
                     optionName: '',
                     optionInterest: '',
                 }});
         this.setState({ checkedRadio: false });
-
     }
 
+    getRatings() {
+        console.log("getting options--rated");
+        fetch(`/ratings/${this.routeParam}`)
+        .then(res=>res.json()
+        .then(console.log(res))
+        .then(res=>this.setState({ratings:res})))
+        .then(res=>this.displayOptionsByUser() )
+    }
+
+    displayOptionsByUser() {
+        let optionsUserHasVoted = this.state.ratings.filter(function (optionRated) {
+            return optionRated.user_id === localStorage.getItem('user_id');
+        });
+
+        this.setState({optionsVoted: optionsUserHasVoted});
+    }
 
     componentDidMount(){
         this.setLocalStorageUserId();
+        this.getRatings();
     }
-
 
     render() {
 
@@ -107,27 +123,22 @@ class Room extends React.Component {
           <React.Fragment>
               <div>
                 <h1>Topic: {this.state.topic}</h1>
-                <a href={whatsAppLink} target="_blank" rel="noopener noreferrer">Share to WhatsApp</a>
-                <a href={telegramLink} target="_blank" rel="noopener noreferrer">Share to Telegram</a>
+                <Share whatsAppLink={whatsAppLink} telegramLink={telegramLink} />
               </div>
 
               <div className={styles.inputWrapper}>
 
                 <Option optionValue={this.state.current.optionName} optionInputHandler={this.inputChangeHandler} />
 
-                <Interest interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.selectedValue} id={this.state.selectedValue} optionId={this.state.selectedValue} />
-                <AddAnother addAnother={this.addAnotherHandler} />
+                <div className={styles.optionsBelowTextInput}>
+                    <Interest interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.selectedValue} id={this.state.selectedValue} optionId={this.state.selectedValue} />
+                    <AddAnother addAnother={this.addAnotherHandler} />
+                </div>
 
             </div>
 
-
-
-
-
-            <hr/>
-
-                <DisplayOption options={this.state.options} />
-                <Submit submitOption={this.optionSubmitHandler} />
+            <DisplayOption options={this.state.optionsVoted} />
+            <Submit submitOption={this.optionSubmitHandler} />
 
 
           </React.Fragment>

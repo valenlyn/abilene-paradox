@@ -5,6 +5,8 @@ class DisplayOwn extends React.Component {
 
     render() {
 
+        console.log(this.props.options);
+
         let myOptions = this.props.options.filter(function (details) {
             return details.user_id === localStorage.getItem('user_id');
         });

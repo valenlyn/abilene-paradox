@@ -2,6 +2,7 @@ import React from 'react';
 import {withRouter} from 'react-router-dom';
 import styles from './style.scss';
 import DisplayOther from './displayother/displayother';
+import DisplayOption from '../room/displayoption/displayoption';
 import DisplayOwn from './displayown/displayown';
 import uuid from 'uuid';
 
@@ -125,7 +126,7 @@ class Vote extends React.Component {
                 <h1>It's time to vote 🤠</h1>
                 <DisplayOther options={this.state.optionsToVote} interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.ratingType} optionId={this.state.selectedOptionId} />
                 <button onClick={this.refreshButtonHandler}>Refresh options</button>
-                <DisplayOwn options={this.state.ratings} />
+                <DisplayOption options={this.state.ratings} />
                 <button>Next</button>
             </React.Fragment>
 

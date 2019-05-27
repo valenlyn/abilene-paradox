@@ -12,7 +12,7 @@ class AddAnother extends React.Component {
         return (
 
             <div className={styles.add}>
-                <Tooltip title="Add" aria-label="Add">
+                <Tooltip title="Add option" aria-label="Add option">
                     <IconButton onClick={this.props.addAnother} id={this.props.id}><i className="material-icons">add_circle</i></IconButton>
                 </Tooltip>
             </div>

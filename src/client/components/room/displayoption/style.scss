@@ -1,4 +1,29 @@
+@import '../../../styles/colors';
+
 .displayWrapper {
+	margin-top: 50px;
 	display: flex;
 	flex-direction: column-reverse;
+}
+
+.optionCard {
+	background-color: $main-bg-color;
+	margin: 10px 250px;
+	padding: 10px 30px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	border-radius: 7px;
+	font-size: 50px;
+	border: 8px solid $primary-color-light;
+}
+
+.optionCardText {
+	padding: 10px;
+}
+
+.optionCardSymbol {
+	text-align: right;
+	display: flex;
+	align-items: center;
 }
