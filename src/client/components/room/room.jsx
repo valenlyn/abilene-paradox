@@ -106,8 +106,8 @@ class Room extends React.Component {
         return (
           <React.Fragment>
               <div>
-                <p>Topic: {this.state.topic}</p>
-                <p><a href={whatsAppLink} target="_blank" rel="noopener noreferrer">Share to WhatsApp</a></p>
+                <h1>Topic: {this.state.topic}</h1>
+                <a href={whatsAppLink} target="_blank" rel="noopener noreferrer">Share to WhatsApp</a>
                 <a href={telegramLink} target="_blank" rel="noopener noreferrer">Share to Telegram</a>
               </div>
 
@@ -116,10 +116,11 @@ class Room extends React.Component {
                 <Option optionValue={this.state.current.optionName} optionInputHandler={this.inputChangeHandler} />
 
                 <Interest interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.selectedValue} id={this.state.selectedValue} optionId={this.state.selectedValue} />
-
                 <AddAnother addAnother={this.addAnotherHandler} />
 
             </div>
+
+
 
 
 

@@ -1,4 +1,12 @@
 .input {
 	display: inline-flex;
-	align-items: center;
+	justify-content: space-around;
+}
+
+.optionInput {
+	border-radius: 3px;
+	border: 4px solid #ffd54f;
+	padding: 10px;
+	font-size: 30px;
+	margin: 15px;
 }

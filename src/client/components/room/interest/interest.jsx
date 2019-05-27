@@ -23,7 +23,7 @@ class Interest extends React.Component {
         if (this.props.veto) {
 
             vetoRadio = (
-                <React.Fragment>
+                <div className={styles.moodWrapper}>
 
                     <Radio
                         type="radio"
@@ -33,8 +33,8 @@ class Interest extends React.Component {
                         onChange={this.props.interestChangeHandler}
                         checked={this.props.selectedValue === "1" && this.props.radioSelect && this.props.optionId === this.props.id}
                     />
-                        🤮
-                </React.Fragment>
+                        <span className={styles.moodLabel}>🤮</span>
+                </div>
             )
         } else {
             vetoRadio = '';
@@ -45,27 +45,31 @@ class Interest extends React.Component {
 
                 {vetoRadio}
 
-                <ColorRadio
-                    type="radio"
-                    id={this.props.id}
-                    name={this.props.id}
-                    value="2"
-                    onChange={this.props.interestChangeHandler}
-                    checked={this.props.selectedValue === "2"  && this.props.radioSelect && this.props.optionId === this.props.id }
-                />
-
-                    😊
-
-                <ColorRadio
-                    type="radio"
-                    id={this.props.id}
-                    name={this.props.id}
-                    value="3"
-                    onChange={this.props.interestChangeHandler}
-                    checked={this.props.selectedValue === "3"  && this.props.radioSelect && this.props.optionId === this.props.id}
+                <div className={styles.moodWrapper}>
+                    <ColorRadio
+                        type="radio"
+                        id={this.props.id}
+                        name={this.props.id}
+                        value="2"
+                        onChange={this.props.interestChangeHandler}
+                        checked={this.props.selectedValue === "2"  && this.props.radioSelect && this.props.optionId === this.props.id }
                     />
 
-                    😍
+                        <span className={styles.moodLabel}>😊</span>
+                </div>
+
+                <div className={styles.moodWrapper}>
+                    <ColorRadio
+                        type="radio"
+                        id={this.props.id}
+                        name={this.props.id}
+                        value="3"
+                        onChange={this.props.interestChangeHandler}
+                        checked={this.props.selectedValue === "3"  && this.props.radioSelect && this.props.optionId === this.props.id}
+                        />
+
+                        <span className={styles.moodLabel}>😍</span>
+                </div>
 
 
           </div>
