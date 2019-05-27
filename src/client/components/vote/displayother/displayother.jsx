@@ -7,7 +7,6 @@ class DisplayOther extends React.Component {
 
     render() {
 
-        console.log("from compo:" +this.props.options[0].option)
 
         let optionsToVote = this.props.options.map((option, i) => {
             return <div key={i+1 * 4} className={styles.optionWrapper}>

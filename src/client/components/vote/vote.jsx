@@ -15,7 +15,7 @@ class Vote extends React.Component {
                     optionsToVote: [],
                     optionsVoted: [],
                     ratingType: '',
-                    selectedOptionId: 0,
+                    selectedOptionId: '',
                     checkedRadio: false,
                     }
         this.routeParam = props.match.params.id;
@@ -112,6 +112,9 @@ class Vote extends React.Component {
     refreshButtonHandler = (e) => {
         this.fetchOptions();
     }
+    redirectButtonHandler = (e) => {
+        window.location = `/room/${this.routeParam}/result`;
+    }
 
     componentDidMount() {
         this.fetchOptions();
@@ -119,14 +122,42 @@ class Vote extends React.Component {
 
     render() {
 
+
+        let optionsUserHasVoted = this.state.ratings.filter(function (optionRated) {
+            return optionRated.user_id === localStorage.getItem('user_id');
+        });
+
+
+
+        let optionsUserHasNotVoted = this.state.options.filter(function (option) {
+            return option.user_id !== localStorage.getItem('user_id') && option.option !== "";
+        });
+
+
+        optionsUserHasNotVoted = optionsUserHasNotVoted.filter(function(cv) {
+            return !optionsUserHasVoted.find(function(e){
+                return e.id == cv.id;
+            })
+        })
+
+
+
+        console.log("--000=----")
+
+        console.log(optionsUserHasVoted);
+        console.log(optionsUserHasNotVoted);
+        console.log("--000=----")
+
+
         return (
 
             <React.Fragment>
                 <h1>It's time to vote 🤠</h1>
-                <DisplayOther options={this.state.optionsToVote} interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.ratingType} optionId={this.state.selectedOptionId} />
+                <DisplayOther options={optionsUserHasNotVoted} interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.ratingType} optionId={this.state.selectedOptionId} />
+
                 <button onClick={this.refreshButtonHandler}>Refresh options</button>
-                <DisplayOption options={this.state.ratings} />
-                <button>Next</button>
+                <DisplayOption options={optionsUserHasVoted} />
+                <button onClick={this.redirectButtonHandler}>Next</button>
             </React.Fragment>
 
         )
