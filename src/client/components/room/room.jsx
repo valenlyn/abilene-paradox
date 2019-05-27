@@ -20,7 +20,8 @@ class Room extends React.Component {
                     optionInterest: '',
                 },
             options: [],
-            checkedRadio: false
+            checkedRadio: false,
+            selectedValue: ''
         }
 
         this.routeParam = props.match.params.id;
@@ -52,6 +53,7 @@ class Room extends React.Component {
     interestChangeHandler = (e) => {
         this.setState({current: {...this.state.current, optionInterest: e.target.value}});
         this.setState({checkedRadio: true})
+        this.setState({selectedValue: e.target.value});
     }
 
     optionSubmitHandler = (e) => {
@@ -111,7 +113,7 @@ class Room extends React.Component {
 
 
             <Option optionValue={this.state.current.optionName} optionInputHandler={this.inputChangeHandler} />
-            <Interest interestChangeHandler={this.interestChangeHandler} checked={this.state.checkedRadio} whichIsChecked={this.state.current.optionInterest}/>
+            <Interest interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.selectedValue} id={this.state.selectedValue} optionId={this.state.selectedValue} />
 
             <AddAnother addAnother={this.addAnotherHandler} />
 
