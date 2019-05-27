@@ -1,24 +1,31 @@
 import React from 'react';
 import styles from './style.scss';
+import { withStyles } from '@material-ui/core/styles';
+import amber from '@material-ui/core/colors/amber';
+import Radio from '@material-ui/core/Radio';
 
 class Interest extends React.Component {
 
-
     render() {
+
+        const ColorRadio = withStyles({
+          root: {
+            color: amber[400],
+            '&$checked': {
+              color: amber[800],
+            },
+          },
+          checked: {},
+        })(props => <Radio color="default" {...props} />);
 
         let vetoRadio;
 
-
-
         if (this.props.veto) {
-            console.log("------inside veto-----")
-
-            console.log(this.props.id)
-            console.log(parseInt(this.props.optionId))
 
             vetoRadio = (
                 <React.Fragment>
-                    <input
+
+                    <Radio
                         type="radio"
                         id={this.props.id}
                         name={this.props.id}
@@ -38,7 +45,7 @@ class Interest extends React.Component {
 
                 {vetoRadio}
 
-                <input
+                <ColorRadio
                     type="radio"
                     id={this.props.id}
                     name={this.props.id}
@@ -49,7 +56,7 @@ class Interest extends React.Component {
 
                     😊
 
-                <input
+                <ColorRadio
                     type="radio"
                     id={this.props.id}
                     name={this.props.id}
@@ -59,6 +66,7 @@ class Interest extends React.Component {
                     />
 
                     😍
+
 
           </div>
         );
