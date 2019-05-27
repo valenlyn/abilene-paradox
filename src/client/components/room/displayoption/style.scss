@@ -7,7 +7,6 @@
 }
 
 .optionCard {
-	background-color: $main-bg-color;
 	margin: 10px 250px;
 	padding: 10px 30px;
 	display: flex;
@@ -15,7 +14,8 @@
 	justify-content: space-between;
 	border-radius: 7px;
 	font-size: 50px;
-	border: 8px solid $primary-color-light;
+	border: 3px solid $primary-color-light;
+	box-shadow: 0.5px 0.5px 3px 0.5px #cccccc;
 }
 
 .optionCardText {

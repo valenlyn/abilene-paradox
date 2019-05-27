@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './style.scss';
 import {withRouter} from 'react-router-dom';
+import Topic from '../general/topic/topic.jsx';
 import Option from './option/option.jsx';
 import Interest from './interest/interest.jsx';
 import Submit from './submit/submit.jsx';
@@ -57,7 +58,7 @@ class Room extends React.Component {
     }
 
     optionSubmitHandler = (e) => {
-        this.sendOptionsPostRequest();
+        // this.sendOptionsPostRequest();
         window.location = `/room/${this.routeParam}/vote`;
     }
 
@@ -91,7 +92,6 @@ class Room extends React.Component {
     }
 
     getRatings() {
-        console.log("getting options--rated");
         fetch(`/ratings/${this.routeParam}`)
         .then(res=>res.json()
         .then(console.log(res))
@@ -122,7 +122,7 @@ class Room extends React.Component {
         return (
           <React.Fragment>
               <div>
-                <h1>Topic: {this.state.topic}</h1>
+                <Topic topic={this.state.topic} />
                 <Share whatsAppLink={whatsAppLink} telegramLink={telegramLink} />
               </div>
 

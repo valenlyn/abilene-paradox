@@ -8,7 +8,7 @@ class Pokemon extends React.Component {
         <body>
           <div>
             <p>HI BITCHY</p>
-            <form method="POST" action="/new">
+            <form method="POST" action="/new" accept-charset="UTF-8">
 
                     <input type="text" name="topic" autoFocus/>
 

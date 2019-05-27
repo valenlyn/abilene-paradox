@@ -7,6 +7,8 @@ class DisplayOther extends React.Component {
 
     render() {
 
+        console.log("from compo:" +this.props.options[0].option)
+
         let optionsToVote = this.props.options.map((option, i) => {
             return <div key={i+1 * 4} className={styles.optionWrapper}>
                     <span>{option.option}</span>
@@ -14,9 +16,9 @@ class DisplayOther extends React.Component {
                     </div>;
         })
 
-        if (!this.props.options.first) {
-            optionsToVote = "No pending options to vote..."
-        }
+        // if (!this.props.options.first) {
+        //     optionsToVote = "No pending options to vote..."
+        // }
 
         return (
             <React.Fragment>
