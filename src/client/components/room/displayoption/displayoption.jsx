@@ -6,13 +6,8 @@ class DisplayOption extends React.Component {
 
     render() {
 
-        let display;
 
-        if (!this.props.options.first) {
-            display = "nth to show"
-        } else {
-
-        display = this.props.options.map((option, i) => {
+        let display = this.props.options.map((option, i) => {
 
             let optionSymbol;
             if (option.rating === 3) {
@@ -34,12 +29,11 @@ class DisplayOption extends React.Component {
                 </div>
             )
         })
-        }
+
 
         return (
 
             <div className={styles.displayWrapper}>
-                <p>opts u have rated here</p>
                 {display}
             </div>
 
