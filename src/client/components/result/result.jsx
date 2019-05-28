@@ -18,7 +18,7 @@ class Result extends React.Component {
     }
 
     getRatings() {
-        fetch(`/ratings/${this.routeParam}`)
+        fetch(`/ratingscore/${this.routeParam}`)
         .then(res=>res.json()
         .then(console.log(res))
         .then(res=>this.setState({ratings:res})))
@@ -39,90 +39,11 @@ class Result extends React.Component {
 
     render() {
 
-        let allRatings = [];
-        let allOptionNames = [];
-        let three = [];
-        let two = [];
-        let one = [];
-
-        let match = [];
-
-        let results = this.state.ratings.map((result, i) => {
-
-            if (result.rating === 3) {
-                three.push({name: result.option, id: result.id });
-            } else if (result.rating === 2) {
-                two.push({name: result.option, id: result.id})
-            } else if (result.rating === 1) {
-                one.push({name: result.option, id: result.id})
-            }
-
-            // allRatings.push(result.id);
-            allOptionNames.push(result.option);
-
-            return <p key={i+1 * 33}> {result.option} {result.rating} </p>
-        })
-
-
-        // let getUnique = (id) => id.filter((v,i) => id.indexOf(v) === i);
-        // let uniqueIds = getUnique(allRatings);
-        // console.log("unique ids here " + uniqueIds);
-
-        let getUniqueNames = (name) => name.filter((v,i) => name.indexOf(v) === i);
-        let uniqueNames = getUniqueNames(allOptionNames);
-
-        console.log(uniqueNames);
-
-        let resultsA = this.state.ratings.map((result) => {
-
-            let resultsB = uniqueNames.map((name, i) => {
-
-                console.log(result.option);
-                console.log(name);
-                console.log("--------------");
-                if (result.option === name) {
-                    console.log(result.option+" = "+name)
-                }
-            })
-        })
-
-
-
-        // let printUniqueNames = uniqueNames.map((item, i) => {
-        //     return <p key={i+1 * 88}>{item}</p>
-        // })
-
-
-        let printThree = three.map((opt, i) => {
-            return <p key={i+1 * 22} >{opt.name}</p>
-        })
-
-        let printTwo = two.map((opt, i) => {
-            return <p key={i+1 * 44}>{opt.name}</p>
-        })
-
-        let printOne = one.map((opt, i) => {
-            return <p key={i+1 * 909}>{opt.name}</p>
-        })
-
 
         return (
             <React.Fragment>
                 <Topic topic={this.state.topic} />
 
-                <hr/>
-                <br />
-                😍
-                <br/>
-                {printThree}
-
-                <br/>
-                😊 <br/>
-                {printTwo}
-
-                <br/>
-                🤮 <br/>
-                {printOne}
 
             </React.Fragment>
         )

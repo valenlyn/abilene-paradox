@@ -13,6 +13,7 @@ module.exports = (app, db) => {
   app.get('/roominfo/:id', room.getRoom);
   app.get('/options/:id', option.getOptions);
   app.get('/ratings/:id', rating.getRatings);
+  app.get('/ratingscore/:id', rating.getRatingsVotingPage);
 
   app.post('/room/:id', room.sendOptions);
   app.post('/vote/:id', rating.sendRatings);

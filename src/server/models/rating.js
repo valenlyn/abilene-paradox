@@ -20,7 +20,22 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
-  let queryGetRatings = (data, callback) => {
+    let queryGetRatings = (data, callback) => {
+
+    dbPoolInstance.query(`select ratings.rating, options.option, options.id, ratings.user_id from ratings inner join options on ratings.option_id = options.id where room_id='${data.queryUrl}'`, (error, queryResult) => {
+      if (error) {
+
+        callback(error, null);
+
+      } else {
+
+        callback( null, queryResult.rows );
+
+      }
+    });
+  }
+
+  let queryGetRatingsVotingPage = (data, callback) => {
 
     dbPoolInstance.query(`select ratings.rating, options.option, options.id, ratings.user_id from ratings inner join options on ratings.option_id = options.id where room_id='${data.queryUrl}'`, (error, queryResult) => {
       if (error) {
@@ -31,12 +46,14 @@ module.exports = (dbPoolInstance) => {
         if (queryResult.rows){
             let getNames = queryResult.rows.map(result => result.option);
             let getUniqueNames = getNames.filter((v,i) => getNames.indexOf(v) === i)
-            let results = getUniqueNames.map(name => {return {name: name, score: 0}})
+            let results = getUniqueNames.map(name => {return {name: name, ratingOneScore: 0, ratingTwoScore: 0, ratingThreeScore: 0}})
+
             results.forEach(result => {
                 queryResult.rows.forEach(row => {
                     if (result.name === row.option){
-                        if (row.rating === 1 ) result.score--
-                            else if (row.rating === 3) result.score++
+                        if (row.rating === 1 ) result.ratingOneScore++
+                            else if (row.rating === 2) result.ratingTwoScore++
+                                else if (row.rating === 3) result.ratingThreeScore++
                     }
                 })
             })
@@ -52,6 +69,7 @@ module.exports = (dbPoolInstance) => {
 
   return {
     querySendRatings,
-    queryGetRatings
+    queryGetRatings,
+    queryGetRatingsVotingPage
   };
 };

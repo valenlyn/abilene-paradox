@@ -41,13 +41,33 @@ module.exports = (db) => {
 
         db.rating.queryGetRatings(data, doneWithQuery);
 
-};
+    };
+
+
+    let getRatingsVotingPage = (request, response) => {
+
+        console.log(request.body)
+
+        const doneWithQuery = (error, result) => {
+
+          response.send(result);
+
+        }
+
+        let data = {
+             queryUrl: request.params.id
+        }
+
+        db.rating.queryGetRatingsVotingPage(data, doneWithQuery);
+
+    };
 
 
 
 
   return {
     sendRatings,
-    getRatings
+    getRatings,
+    getRatingsVotingPage
   };
 };
