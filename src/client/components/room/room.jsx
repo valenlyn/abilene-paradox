@@ -123,11 +123,16 @@ class Room extends React.Component {
           <React.Fragment>
               <div>
                 <Topic topic={this.state.topic} />
-                <Share whatsAppLink={whatsAppLink} telegramLink={telegramLink} />
               </div>
 
-              <div className={styles.inputWrapper}>
 
+              <div className={styles.shareNextButton}>
+                <Share whatsAppLink={whatsAppLink} telegramLink={telegramLink} />
+                <Submit submitOption={this.optionSubmitHandler} />
+              </div>
+
+
+              <div className={styles.inputWrapper}>
                 <Option optionValue={this.state.current.optionName} optionInputHandler={this.inputChangeHandler} />
 
                 <div className={styles.optionsBelowTextInput}>
@@ -138,7 +143,6 @@ class Room extends React.Component {
             </div>
 
             <DisplayOption options={this.state.optionsVoted} />
-            <Submit submitOption={this.optionSubmitHandler} />
 
 
           </React.Fragment>

@@ -44,7 +44,9 @@ class Index extends React.Component {
     return (
        <div>
 
-        <h1 className={styles.mainWrapper}>Ask a question. Add options. Invite your friends to add options. Vote together. Grow old together. Die. Something. Text here.</h1>
+        <h1 className={styles.mainWrapper}>
+            ASK A QUESTION
+        </h1>
         <Form roomName={this.state.roomName} roomInput={this.handleRoomInput} submitRoom={this.handleRoomCreation} />
 
       </div>

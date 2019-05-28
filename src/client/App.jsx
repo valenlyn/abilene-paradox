@@ -1,6 +1,6 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
-
+import styles from './style.scss';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Counter from './components/counter/counter';
 import Form from './components/form/form';
@@ -14,17 +14,16 @@ class App extends React.Component {
 
   render() {
     return (
-      <div>
+      <div className={styles.appWrapper}>
+            <Router>
+                <Route exact path="/" component={Index} />
+                <Route exact path="/room/:id" component={Room} />
+                <Route exact path="/room/:id/vote" component={Vote} />
+                <Route exact path="/room/:id/result" component={Result} />
 
-        <Router>
-            <Route exact path="/" component={Index} />
-            <Route exact path="/room/:id" component={Room} />
-            <Route exact path="/room/:id/vote" component={Vote} />
-            <Route exact path="/room/:id/result" component={Result} />
-
-        </Router>
-
+            </Router>
       </div>
+
     );
   }
 }
