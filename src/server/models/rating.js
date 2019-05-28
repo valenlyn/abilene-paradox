@@ -28,8 +28,23 @@ module.exports = (dbPoolInstance) => {
         callback(error, null);
 
       } else {
-
-        callback( null, queryResult.rows );
+        if (queryResult.rows){
+            let getNames = queryResult.rows.map(result => result.option);
+            let getUniqueNames = getNames.filter((v,i) => getNames.indexOf(v) === i)
+            let results = getUniqueNames.map(name => {return {name: name, score: 0}})
+            results.forEach(result => {
+                queryResult.rows.forEach(row => {
+                    if (result.name === row.option){
+                        if (row.rating === 1 ) result.score--
+                            else if (row.rating === 3) result.score++
+                    }
+                })
+            })
+            // console.log('results', results)
+            callback( null, results );
+        } else{
+            callback(null, null);
+        }
 
       }
     });

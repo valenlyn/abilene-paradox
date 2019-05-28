@@ -58,7 +58,7 @@ class Result extends React.Component {
             }
 
             // allRatings.push(result.id);
-            // allOptionNames.push(result.option);
+            allOptionNames.push(result.option);
 
             return <p key={i+1 * 33}> {result.option} {result.rating} </p>
         })
@@ -68,20 +68,29 @@ class Result extends React.Component {
         // let uniqueIds = getUnique(allRatings);
         // console.log("unique ids here " + uniqueIds);
 
-        // let getUniqueNames = (name) => name.filter((v,i) => name.indexOf(v) === i);
-        // let uniqueNames = getUniqueNames(allOptionNames);
+        let getUniqueNames = (name) => name.filter((v,i) => name.indexOf(v) === i);
+        let uniqueNames = getUniqueNames(allOptionNames);
 
-        // console.log(uniqueNames);
+        console.log(uniqueNames);
+
+        let resultsA = this.state.ratings.map((result) => {
+
+            let resultsB = uniqueNames.map((name, i) => {
+
+                console.log(result.option);
+                console.log(name);
+                console.log("--------------");
+                if (result.option === name) {
+                    console.log(result.option+" = "+name)
+                }
+            })
+        })
 
 
 
         // let printUniqueNames = uniqueNames.map((item, i) => {
         //     return <p key={i+1 * 88}>{item}</p>
         // })
-
-        // function countInArray(array, value) {
-        //     return array.reduce((n, x) => n + (x === value), 0);
-        // }
 
 
         let printThree = three.map((opt, i) => {
