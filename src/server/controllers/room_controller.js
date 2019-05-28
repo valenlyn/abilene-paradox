@@ -4,12 +4,12 @@ module.exports = (db) => {
 
     let newRoom = (request, response) => {
 
-        let uniqueUrl = uuidv4();
+        // let uniqueUrl = uuidv4();
 
         const doneWithQuery = (error, result) => {
 
             // response.send({result: result});
-            response.cookie('room', result[0].url);
+            // response.cookie('room', result[0].url);
             response.redirect(`/room/${result[0].url}`);
             // response.body({ url: result[0].url });
 
@@ -21,7 +21,7 @@ module.exports = (db) => {
 
         let data = {
             topic: request.body.topic,
-            url: uniqueUrl
+            url: request.body.uniqueUrl
         }
 
         db.room.queryNewRoom(data, doneWithQuery);
@@ -47,6 +47,7 @@ module.exports = (db) => {
 
     let sendOptions = (request, response) => {
 
+
         const doneWithQuery = (error, result) => {
 
         response.send(result);
@@ -59,6 +60,8 @@ module.exports = (db) => {
             user_id: request.body.user_id,
             rating: Number(request.body.optionInterest)
         }
+
+        console.log(data);
 
         db.room.createOptions(data, doneWithQuery);
 

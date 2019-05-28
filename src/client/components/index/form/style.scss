@@ -1,0 +1,21 @@
+@import '../../../styles/colors';
+
+.createRoomInput {
+	width: 520px;
+	border-radius: 3px;
+	border: 4px solid $danger-color;
+	padding: 10px;
+	font-size: 35px;
+	box-shadow: 0.5px 0.5px 3px 0.5px #cccccc;
+	display: inline;
+}
+
+.rootWrapper {
+	margin: 40px auto;
+	display: flex;
+	justify-content: center;
+}
+
+.createRoomButton {
+	display: inline;
+}

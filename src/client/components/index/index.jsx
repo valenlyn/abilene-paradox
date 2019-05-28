@@ -1,5 +1,7 @@
 import React from 'react';
-import Form from '../form/form';
+import Form from './form/form';
+import styles from './style.scss';
+import uuid from "uuid";
 
 class Index extends React.Component {
   constructor() {
@@ -20,31 +22,29 @@ class Index extends React.Component {
 
     handleRoomCreation = e => {
 
+        let url = uuid.v4();
+
         fetch('/new',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
             body: JSON.stringify({
-                name: this.state.roomName,
+                topic: this.state.roomName,
+                uniqueUrl: url
             })
         })
         .then(response => console.log(response))
         // .then(json => console.log(json))
         .catch(error => console.log('Error: ', error))
-        // .then(window.location = `/room/${document.cookie.split(';')[0]}`)
-    }
-
-    // Setting cookies for user when they first visit the page
-    componentDidMount() {
-        fetch(`/welcome`).then(res=>res.json().then(res=>this.setState({user_id:res.userCookie})));
+        .then(window.location = `/room/${url}`)
     }
 
   render() {
     return (
        <div>
 
-        <h1>Decide something rn BOITCHES</h1>
+        <h1 className={styles.mainWrapper}>Ask a question. Add options. Invite your friends to add options. Vote together. Grow old together. Die. Something. Text here.</h1>
         <Form roomName={this.state.roomName} roomInput={this.handleRoomInput} submitRoom={this.handleRoomCreation} />
 
       </div>

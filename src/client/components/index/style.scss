@@ -1,0 +1,14 @@
+@import '../../styles/colors';
+
+h1 {
+	font-size: 37px;
+	margin: 0;
+}
+
+.mainWrapper {
+	height: 240px;
+	background-color: $danger-color;
+	display: flex;
+	align-items: center;
+	box-shadow: 1px 1px 2.5px 1px #cccccc;
+}

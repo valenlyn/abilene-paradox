@@ -37,6 +37,8 @@ module.exports = (dbPoolInstance) => {
 
   let createOptions = (data, callback) => {
 
+    console.log("****** FROM MODEL *****")
+    console.log(data);
 
      dbPoolInstance.query(`INSERT INTO options (option, room_id, user_id) VALUES ('${data.option}', '${data.room_id}', '${data.user_id}') RETURNING id`, (error, queryResult) => {
 

@@ -5,7 +5,7 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import Counter from './components/counter/counter';
 import Form from './components/form/form';
 import Room from './components/room/room';
-
+import Index from './components/index/index';
 import Vote from './components/vote/vote';
 import Result from './components/result/result';
 
@@ -17,7 +17,7 @@ class App extends React.Component {
       <div>
 
         <Router>
-
+            <Route exact path="/" component={Index} />
             <Route exact path="/room/:id" component={Room} />
             <Route exact path="/room/:id/vote" component={Vote} />
             <Route exact path="/room/:id/result" component={Result} />

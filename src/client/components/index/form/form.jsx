@@ -11,9 +11,9 @@ class Form extends React.Component {
     render() {
 
         return (
-          <div>
-            <input value={this.props.roomName} onChange={this.props.roomInput} />
-            <button onClick={this.props.submitRoom}>Create new rom</button>
+          <div className={styles.rootWrapper}>
+            <input className={styles.createRoomInput} value={this.props.roomName} onChange={this.props.roomInput} autoFocus />
+             <button className={styles.createRoomButton} onClick={this.props.submitRoom}>GO</button>
           </div>
         );
         }

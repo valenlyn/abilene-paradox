@@ -5,7 +5,7 @@ module.exports = (app, db) => {
   const option = require('./controllers/option_controller')(db);
   const rating = require('./controllers/rating_controller')(db);
 
-  app.get('/', pokemon.index);
+  // app.get('/', pokemon.index);
   app.get('/new', pokemon.getAll);
   app.post('/new', room.newRoom);
 
