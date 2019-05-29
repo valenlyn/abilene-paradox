@@ -2,7 +2,6 @@ import React from 'react';
 import styles from './style.scss';
 import {withRouter} from 'react-router-dom';
 import Topic from '../general/topic/topic.jsx';
-// import uuid from 'uuid';
 import BarChart from './barchart/barchart.jsx';
 
 class Result extends React.Component {
@@ -20,8 +19,7 @@ class Result extends React.Component {
                     length: 0
                     }
 
-    this.routeParam = props.match.params.id;
-
+        this.routeParam = props.match.params.id;
     }
 
     getOptionNames(){
@@ -59,26 +57,14 @@ class Result extends React.Component {
 
     render() {
 
-
-        let result = this.state.ratings.map((option, i) => {
-
-
-            return <div>
-                <p> {option.name} &nbsp;
-                {option.ratingOneScore} 😍 &nbsp;
-                {option.ratingTwoScore} 😊 &nbsp;
-                {option.ratingOneScore} 🤮 &nbsp;
-               </p>
-            </div>
-        })
-
-
         return (
             <React.Fragment>
                 <Topic topic={this.state.topic} />
 
                 <div className={styles.resultWrapper}>
                     <BarChart labels={this.state.optionNames} rateOne={this.state.ratingOneScore} rateTwo={this.state.ratingTwoScore} rateThree={this.state.ratingThreeScore} length={this.state.length} />
+
+                    <button>I don't care. Get random option.</button>
                 </div>
             </React.Fragment>
 

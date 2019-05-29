@@ -1,3 +1,10 @@
 .refreshButton {
 	margin: 20px;
 }
+
+.nextButtonWrapper {
+	margin: 20px auto;
+	max-width: 960px;
+	display: flex;
+	justify-content: flex-end;
+}

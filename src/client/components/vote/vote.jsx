@@ -151,11 +151,15 @@ class Vote extends React.Component {
 
             <React.Fragment>
                 <Topic topic={this.state.topic} />
+
+                <div className={styles.nextButtonWrapper}>
+                    <button onClick={this.redirectButtonHandler}>Next</button>
+                </div>
+
                 <center><button className={styles.refreshButton} onClick={this.refreshButtonHandler}>Refresh options</button></center>
                 <DisplayOther options={optionsUserHasNotVoted} interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.ratingType} optionId={this.state.selectedOptionId} />
 
                 <DisplayOption options={optionsUserHasVoted} />
-                <button onClick={this.redirectButtonHandler}>Next</button>
             </React.Fragment>
 
         )

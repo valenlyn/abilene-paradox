@@ -18,7 +18,7 @@ class DisplayOption extends React.Component {
                 optionSymbol = "🤮";
             }
             return (
-                                  <div key={i+1 * 8} className={styles.optionCard}>
+                    <div key={i+1 * 8} className={styles.optionCard}>
                         <div key={i +1} className={styles.optionCardText}>
                             {option.option}
                         </div>

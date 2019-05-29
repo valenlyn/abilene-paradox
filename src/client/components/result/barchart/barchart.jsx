@@ -8,8 +8,8 @@ class BarChart extends React.Component {
     render() {
 
     const options = {
-        defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Rubik'",
-        scales: {
+            defaultFontFamily: Chart.defaults.global.defaultFontFamily = "'Rubik'",
+            scales: {
             xAxes: [{
                 gridLines: {
                     display: false
