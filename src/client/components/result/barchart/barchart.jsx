@@ -17,7 +17,8 @@ class BarChart extends React.Component {
                 stacked: true,
                 ticks: {
                         max: this.props.length,
-                        stepSize: (this.props.length / 2)
+                        stepSize: (this.props.length / 2),
+                        fontColor: '#424242'
                     },
             }],
             yAxes: [{
@@ -25,6 +26,10 @@ class BarChart extends React.Component {
                     display: false
                 },
                 stacked: true,
+                ticks: {
+                        fontSize: 14.5,
+                        fontColor: '#424242'
+                },
             }]
         }
     }
