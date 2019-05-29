@@ -42,7 +42,7 @@ class BarChart extends React.Component {
                     label: "😍",
                     backgroundColor: '#e53935',
                     borderColor: '#e53935',
-                    data: this.props.rateOne,
+                    data: this.props.rateThree,
                 }, {
 
                     label: "😊",
@@ -55,7 +55,7 @@ class BarChart extends React.Component {
                     label: "🤮",
                     backgroundColor: '#4caf50',
                     borderColor: '#4caf50',
-                    data: this.props.rateThree,
+                    data: this.props.rateOne,
                 }
                 ]
         }

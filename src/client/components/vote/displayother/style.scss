@@ -1,5 +1,6 @@
 .optionWrapper {
-	margin: 10px 250px;
+	width: 700px;
+	margin: 10px auto;
 	padding: 10px 30px;
 	display: flex;
 	flex-direction: column;
@@ -10,4 +11,8 @@
 	border: 3px solid #ff5722;
 	box-shadow: 0.5px 0.5px 3px 0.5px #cccccc;
 	line-height: 70px;
+}
+
+.displayOtherWrapper {
+	margin-top: 50px;
 }

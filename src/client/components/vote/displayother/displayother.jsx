@@ -10,7 +10,7 @@ class DisplayOther extends React.Component {
 
         let optionsToVote = this.props.options.map((option, i) => {
             return <div key={i+1 * 4} className={styles.optionWrapper}>
-                    <span>{option.option}</span>
+                    <span key={i+1 * 88}>{option.option}</span>
                     <Interest key={i * 100} id={option.id} veto={true} interestChangeHandler={this.props.interestChangeHandler} radioSelect={this.props.radioSelect} selectedValue={this.props.selectedValue} optionId={this.props.optionId} />
                     </div>;
         })
@@ -20,9 +20,9 @@ class DisplayOther extends React.Component {
         // }
 
         return (
-            <React.Fragment>
+            <div className={styles.displayOtherWrapper}>
                 {optionsToVote}
-            </React.Fragment>
+            </div>
 
         )
     }

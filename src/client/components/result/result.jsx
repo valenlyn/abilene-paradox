@@ -3,6 +3,7 @@ import styles from './style.scss';
 import {withRouter} from 'react-router-dom';
 import Topic from '../general/topic/topic.jsx';
 import BarChart from './barchart/barchart.jsx';
+import Modal from '@material-ui/core/Modal';
 
 class Result extends React.Component {
 
@@ -12,7 +13,9 @@ class Result extends React.Component {
                     ratings: [],
                     topic: '',
                     optionNames: [],
+                    optionNamesOptimised: [],
                     options: [],
+                    random: [],
                     ratingOneScore: [],
                     ratingTwoScore: [],
                     ratingThreeScore: [],
@@ -24,13 +27,23 @@ class Result extends React.Component {
 
     getOptionNames(){
 
-        let names = this.state.ratings.map((option) => {
-            console.log(option.name)
+        let arraySortByHighestScore = this.state.ratings;
+        arraySortByHighestScore.sort(function(a, b) {
+            return b.overallScore - a.overallScore;
+        });
+
+        let names = arraySortByHighestScore.map((option) => {
+
             this.setState({optionNames: [...this.state.optionNames, option.name]});
             this.setState({ratingOneScore: [...this.state.ratingOneScore, option.ratingOneScore]});
             this.setState({ratingTwoScore: [...this.state.ratingTwoScore, option.ratingTwoScore]});
             this.setState({ratingThreeScore: [...this.state.ratingThreeScore, option.ratingThreeScore]});
             this.setState({length: option.length})
+        })
+
+        let thanos = arraySortByHighestScore.splice(0, Math.ceil(arraySortByHighestScore.length / 2));
+        let optionNamesOptimised = thanos.map((option) => {
+            this.setState({optionNamesOptimised: [...this.state.optionNamesOptimised, option.name]});
         })
     }
 
@@ -50,6 +63,19 @@ class Result extends React.Component {
         .then(res=>this.setState({topic:res[0].topic})))
     }
 
+    shuffle(array) {
+        return array.shuffle()[0];
+    }
+
+    generateRandomHandler = e => {
+
+        let random = [...this.state.optionNamesOptimised];
+        let chosen = random.map((a) => ({sort: Math.random(), value: a}))
+                            .sort((a, b) => a.sort - b.sort)
+                            .map((a) => a.value);
+        this.setState({random: chosen[0]});
+    }
+
     componentDidMount() {
         this.getRatings();
     }
@@ -64,8 +90,11 @@ class Result extends React.Component {
                 <div className={styles.resultWrapper}>
                     <BarChart labels={this.state.optionNames} rateOne={this.state.ratingOneScore} rateTwo={this.state.ratingTwoScore} rateThree={this.state.ratingThreeScore} length={this.state.length} />
 
-                    <button>I don't care. Get random option.</button>
+
+                    <button className={styles.randomButton} onClick={this.generateRandomHandler}>Generate random option</button>
+
                 </div>
+
             </React.Fragment>
 
         )

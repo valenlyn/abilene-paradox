@@ -57,14 +57,21 @@ module.exports = (dbPoolInstance) => {
                     let length = queryResultTwo.rows.length
                     let getNames = queryResult.rows.map(result => result.option);
                     let getUniqueNames = getNames.filter((v,i) => getNames.indexOf(v) === i)
-                    let results = getUniqueNames.map(name => {return {name: name, ratingOneScore: 0, ratingTwoScore: 0, ratingThreeScore: 0, length: length}})
+                    let results = getUniqueNames.map(name => {return {name: name, ratingOneScore: 0, ratingTwoScore: 0, ratingThreeScore: 0, overallScore: 0, length: length}})
 
                     results.forEach(result => {
                         queryResult.rows.forEach(row => {
                             if (result.name === row.option){
-                                if (row.rating === 1 ) result.ratingOneScore++
-                                    else if (row.rating === 2) result.ratingTwoScore++
-                                        else if (row.rating === 3) result.ratingThreeScore++
+                                if (row.rating === 1 ) {
+                                    result.ratingOneScore++;
+                                    result.overallScore-= 2;
+                                } else if (row.rating === 2) {
+                                    result.ratingTwoScore++;
+                                    result.overallScore++;
+                                    } else if (row.rating === 3) {
+                                        result.ratingThreeScore++;
+                                        result.overallScore+= 2;
+                                    }
                             }
                         })
                     })

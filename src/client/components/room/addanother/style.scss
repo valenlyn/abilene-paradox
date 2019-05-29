@@ -1,12 +1,14 @@
+@import '../../../styles/colors';
+
 .add {
 	margin: 0px 25px;
 
 	i {
-		color: #4caf50;
+		color: $green;
 		font-size: 42px !important;
 	}
 
 	i:hover {
-		color: #43a047;
+		color: $green2;
 	}
 }
