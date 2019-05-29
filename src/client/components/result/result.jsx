@@ -3,7 +3,7 @@ import styles from './style.scss';
 import {withRouter} from 'react-router-dom';
 import Topic from '../general/topic/topic.jsx';
 import BarChart from './barchart/barchart.jsx';
-import Modal from '@material-ui/core/Modal';
+import ModalRandom from './modalRandom/modalRandom.jsx';
 
 class Result extends React.Component {
 
@@ -74,6 +74,7 @@ class Result extends React.Component {
                             .sort((a, b) => a.sort - b.sort)
                             .map((a) => a.value);
         this.setState({random: chosen[0]});
+        console.log(chosen)
     }
 
     componentDidMount() {
@@ -83,6 +84,8 @@ class Result extends React.Component {
 
     render() {
 
+        console.log(this.state.random)
+
         return (
             <React.Fragment>
                 <Topic topic={this.state.topic} />
@@ -90,11 +93,9 @@ class Result extends React.Component {
                 <div className={styles.resultWrapper}>
                     <BarChart labels={this.state.optionNames} rateOne={this.state.ratingOneScore} rateTwo={this.state.ratingTwoScore} rateThree={this.state.ratingThreeScore} length={this.state.length} />
 
-
-                    <button className={styles.randomButton} onClick={this.generateRandomHandler}>Generate random option</button>
+                <ModalRandom randomOption={this.state.random} generateRandomOption={this.generateRandomHandler} />
 
                 </div>
-
             </React.Fragment>
 
         )

@@ -5,13 +5,6 @@
 	display: flex;
 	align-items: center;
 	flex-direction: column;
-	margin: 15px auto;
+	margin: 1px auto;
 	padding-right: 25px;
-}
-
-.randomButton {
-	@extend .nextButton;
-	font-size: 30px;
-	padding: 20px 25px;
-	margin: 10px;
 }

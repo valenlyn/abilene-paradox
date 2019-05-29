@@ -1,0 +1,13 @@
+@import '../../room/submit/style';
+
+.randomButton {
+	@extend .nextButton;
+	font-size: 30px;
+	padding: 20px 25px;
+	margin: 10px;
+}
+
+.randomOption {
+	font-size: 30px;
+	text-align: center;
+}
