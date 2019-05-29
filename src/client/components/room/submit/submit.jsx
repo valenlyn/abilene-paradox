@@ -7,7 +7,7 @@ class Submit extends React.Component {
     render() {
 
         return (
-          <button onClick={this.props.submitOption}>Next</button>
+          <button className={styles.nextButton} onClick={this.props.submitOption}>Next</button>
         );
         }
     }

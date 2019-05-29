@@ -156,7 +156,11 @@ class Vote extends React.Component {
                     <button onClick={this.redirectButtonHandler}>Next</button>
                 </div>
 
-                <center><button className={styles.refreshButton} onClick={this.refreshButtonHandler}>Refresh options</button></center>
+
+                <button className={styles.refreshButton} onClick={this.refreshButtonHandler}>
+                    <i class="material-icons">refresh</i> Fetch new options
+                </button>
+
                 <DisplayOther options={optionsUserHasNotVoted} interestChangeHandler={this.interestChangeHandler} radioSelect={this.state.checkedRadio} selectedValue={this.state.ratingType} optionId={this.state.selectedOptionId} />
 
                 <DisplayOption options={optionsUserHasVoted} />

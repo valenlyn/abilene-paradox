@@ -1,6 +1,23 @@
 .refreshButton {
 	margin: 20px;
+	background-color: #03a9f4;
+	font-size: 15px;
+	color: white;
+	border-radius: 5px;
+	box-shadow: 0.5px 0.5px 3px 0.5px #cccccc;
+	padding: 10px 15px;
+	display: flex;
+	align-items: center;
+	text-transform: uppercase;
+	font-weight: 700;
+
+	i {
+		color: white;
+		padding-right: 10px;
+		font-size: 20px;
+	}
 }
+
 
 .nextButtonWrapper {
 	margin: 20px auto;

@@ -4,7 +4,7 @@
   "description": "",
   "license": "MIT",
   "engines": {
-    "node": "8.9.0"
+    "node": "10.15.3"
   },
   "repository": {
     "type": "git",
