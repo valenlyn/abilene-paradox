@@ -12,10 +12,12 @@ class Form extends React.Component {
 
         return (
           <div className={styles.rootWrapper}>
+          <form onSubmit={this.props.submitRoom}>
             <input className={styles.createRoomInput} value={this.props.roomName} onChange={this.props.roomInput} autoFocus placeholder="e.g. What should we do for dinner?"/>
-             <button className={styles.createRoomButton} onClick={this.props.submitRoom}>
+             <button type="submit" className={styles.createRoomButton}>
              GO
              </button>
+          </form>
 
           </div>
         );

@@ -7,8 +7,23 @@ module.exports = (dbPoolInstance) => {
 
   let queryNewRoom = (data, callback) => {
 
-    dbPoolInstance.query(`INSERT INTO rooms (url, topic) VALUES ('${data.url}', '${data.topic}') RETURNING *`, (error, queryResult) => {
+
+    console.log("************************")
+    console.log("************************")
+
+    console.log("url: ", data.url)
+    console.log("url: ", data.topic)
+    console.log("************************")
+    console.log("************************")
+
+
+    const values = [data.url, data.topic];
+    queryText = 'INSERT INTO rooms (url, topic) VALUES ($1, $2) RETURNING *';
+
+    dbPoolInstance.query(queryText, values, (error, queryResult) => {
       if (error) {
+
+        console.log("have errr in quering", error)
         // invoke callback function with results after query has executed
         callback(error, null);
       } else {
@@ -37,10 +52,10 @@ module.exports = (dbPoolInstance) => {
 
   let createOptions = (data, callback) => {
 
-    console.log("****** FROM MODEL *****")
-    console.log(data);
+    const values = [data.option, data.room_id, data.user_id];
+    queryText = 'INSERT INTO options (option, room_id, user_id) VALUES ($1, $2, $3) RETURNING id'
 
-     dbPoolInstance.query(`INSERT INTO options (option, room_id, user_id) VALUES ('${data.option}', '${data.room_id}', '${data.user_id}') RETURNING id`, (error, queryResult) => {
+     dbPoolInstance.query(queryText, values, (error, queryResult) => {
 
       if (error) {
 

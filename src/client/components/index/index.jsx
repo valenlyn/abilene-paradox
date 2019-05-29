@@ -21,8 +21,13 @@ class Index extends React.Component {
     }
 
     handleRoomCreation = e => {
-
+        e.preventDefault();
         let url = uuid.v4();
+
+        console.log(JSON.stringify({
+                topic: this.state.roomName,
+                uniqueUrl: url
+            }))
 
         fetch('/new',{
             method: 'POST',
