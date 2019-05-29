@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './style.scss';
 import {withRouter} from 'react-router-dom';
 import Topic from '../general/topic/topic.jsx';
-import uuid from 'uuid';
+// import uuid from 'uuid';
+import BarChart from './barchart/barchart.jsx';
 
 class Result extends React.Component {
 
@@ -11,10 +12,28 @@ class Result extends React.Component {
         this.state = {
                     ratings: [],
                     topic: '',
+                    optionNames: [],
+                    options: [],
+                    ratingOneScore: [],
+                    ratingTwoScore: [],
+                    ratingThreeScore: [],
+                    length: 0
                     }
 
     this.routeParam = props.match.params.id;
 
+    }
+
+    getOptionNames(){
+
+        let names = this.state.ratings.map((option) => {
+            console.log(option.name)
+            this.setState({optionNames: [...this.state.optionNames, option.name]});
+            this.setState({ratingOneScore: [...this.state.ratingOneScore, option.ratingOneScore]});
+            this.setState({ratingTwoScore: [...this.state.ratingTwoScore, option.ratingTwoScore]});
+            this.setState({ratingThreeScore: [...this.state.ratingThreeScore, option.ratingThreeScore]});
+            this.setState({length: option.length})
+        })
     }
 
     getRatings() {
@@ -23,6 +42,7 @@ class Result extends React.Component {
         .then(console.log(res))
         .then(res=>this.setState({ratings:res})))
         .then(res=>this.getRoomInfo() )
+        .then(res=>this.getOptionNames() )
     }
 
     getRoomInfo() {
@@ -40,12 +60,28 @@ class Result extends React.Component {
     render() {
 
 
+        let result = this.state.ratings.map((option, i) => {
+
+
+            return <div>
+                <p> {option.name} &nbsp;
+                {option.ratingOneScore} 😍 &nbsp;
+                {option.ratingTwoScore} 😊 &nbsp;
+                {option.ratingOneScore} 🤮 &nbsp;
+               </p>
+            </div>
+        })
+
+
         return (
             <React.Fragment>
                 <Topic topic={this.state.topic} />
 
-
+                <div className={styles.resultWrapper}>
+                    <BarChart labels={this.state.optionNames} rateOne={this.state.ratingOneScore} rateTwo={this.state.ratingTwoScore} rateThree={this.state.ratingThreeScore} length={this.state.length} />
+                </div>
             </React.Fragment>
+
         )
     }
 }

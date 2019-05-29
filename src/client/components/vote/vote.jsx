@@ -147,15 +147,6 @@ class Vote extends React.Component {
             })
         })
 
-
-
-        console.log("--000=----")
-
-        console.log(optionsUserHasVoted);
-        console.log(optionsUserHasNotVoted);
-        console.log("--000=----")
-
-
         return (
 
             <React.Fragment>
