@@ -30,7 +30,7 @@ class Index extends React.Component {
                 uniqueUrl: url
             }))
 
-        fetch('/new',{
+        fetch('https://polar-anchorage-88057.herokuapp.com/new',{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ class Index extends React.Component {
         .then(response => console.log(response))
         // .then(json => console.log(json))
         .catch(error => console.log('Error: ', error))
-        .then(window.location = `/room/${url}`)
+        .then(window.location = `https://polar-anchorage-88057.herokuapp.com/room/${url}`)
     }
 
   render() {

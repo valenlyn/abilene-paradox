@@ -44,7 +44,7 @@ class Vote extends React.Component {
     }
 
     sendVotePostRequest(optionId, optionInterest) {
-        fetch(`/vote/${this.routeParam}`,{
+        fetch(`https://polar-anchorage-88057.herokuapp.com/vote/${this.routeParam}`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -72,7 +72,7 @@ class Vote extends React.Component {
 
     getRatings() {
 
-        fetch(`/ratings/${this.routeParam}`)
+        fetch(`https://polar-anchorage-88057.herokuapp.com/ratings/${this.routeParam}`)
         .then(res=>res.json()
         // .then(console.log(res))
         .then(res=>this.setState({ratings:res})))
@@ -81,7 +81,7 @@ class Vote extends React.Component {
 
     fetchOptions() {
 
-        fetch(`/options/${this.routeParam}`)
+        fetch(`https://polar-anchorage-88057.herokuapp.com/options/${this.routeParam}`)
         .then(res=>res.json()
         // .then(console.log(res))
         .then(res=>this.setState({options:res})))
@@ -114,14 +114,14 @@ class Vote extends React.Component {
         this.fetchOptions();
     }
     redirectButtonHandler = (e) => {
-        window.location = `/room/${this.routeParam}/result`;
+        window.location = `https://polar-anchorage-88057.herokuapp.com/room/${this.routeParam}/result`;
     }
 
     componentDidMount() {
         this.fetchOptions();
         this.setLocalStorageUserId();
 
-        fetch(`/roominfo/${this.routeParam}`)
+        fetch(`https://polar-anchorage-88057.herokuapp.com/roominfo/${this.routeParam}`)
         .then(res=>res.json()
         .then(console.log(res))
         .then(res=>this.setState({topic:res[0].topic})));
