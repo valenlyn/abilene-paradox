@@ -48,7 +48,7 @@ class Result extends React.Component {
     }
 
     getRatings() {
-        fetch(`https://polar-anchorage-88057.herokuapp.com/ratingscore/${this.routeParam}`)
+        fetch(`/ratingscore/${this.routeParam}`)
         .then(res=>res.json()
         .then(console.log(res))
         .then(res=>this.setState({ratings:res})))
@@ -57,7 +57,7 @@ class Result extends React.Component {
     }
 
     getRoomInfo() {
-        fetch(`https://polar-anchorage-88057.herokuapp.com/roominfo/${this.routeParam}`)
+        fetch(`/roominfo/${this.routeParam}`)
         .then(res=>res.json()
         .then(console.log(res))
         .then(res=>this.setState({topic:res[0].topic})))

@@ -29,7 +29,7 @@ class Room extends React.Component {
 
         this.routeParam = props.match.params.id;
 
-        fetch(`https://polar-anchorage-88057.herokuapp.com/roominfo/${this.routeParam}`)
+        fetch(`/roominfo/${this.routeParam}`)
         .then(res=>res.json()
         .then(console.log(res))
         .then(res=>this.setState({topic:res[0].topic})));
@@ -59,11 +59,11 @@ class Room extends React.Component {
 
     optionSubmitHandler = (e) => {
         // this.sendOptionsPostRequest();
-        window.location = `https://polar-anchorage-88057.herokuapp.com/room/${this.routeParam}/vote`;
+        window.location = `/room/${this.routeParam}/vote`;
     }
 
     sendOptionsPostRequest(){
-        fetch(`https://polar-anchorage-88057.herokuapp.com/room/${this.routeParam}`,{
+        fetch(`/room/${this.routeParam}`,{
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -92,7 +92,7 @@ class Room extends React.Component {
     }
 
     getRatings() {
-        fetch(`https://polar-anchorage-88057.herokuapp.com/ratings/${this.routeParam}`)
+        fetch(`/ratings/${this.routeParam}`)
         .then(res=>res.json()
         .then(console.log(res))
         .then(res=>this.setState({ratings:res})))
@@ -115,7 +115,7 @@ class Room extends React.Component {
     render() {
 
         let invitationMessage = this.state.topic + " Let's decide!";
-        let roomUrl = `https://polar-anchorage-88057.herokuapp.com/room/${this.routeParam}`;
+        let roomUrl = `/room/${this.routeParam}`;
         let whatsAppLink = `https://wa.me/?text=${roomUrl} %0A ${invitationMessage}`;
         let telegramLink = `https://telegram.me/share/url?url=${roomUrl}&text=${invitationMessage}`
 
