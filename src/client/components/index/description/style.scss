@@ -1,0 +1,29 @@
+@import '../../../styles/colors';
+
+.descWrapper {
+	margin: 0px auto;
+	background-color: $primary-color-light;
+
+	p {
+		width: 760px;
+		margin: 0px auto;
+		padding: 50px;
+	}
+}
+
+.descText {
+	font-size: 30px;
+
+	i {
+		font-size: 22px;
+		padding-right: 15px;
+	}
+}
+
+.introWrapper {
+	background-color: #fff59d;
+
+	h1 {
+		padding-top: 35px;
+	}
+}

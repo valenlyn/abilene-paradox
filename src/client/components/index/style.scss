@@ -11,6 +11,12 @@
 }
 
 	h1 {
+		margin: 0;
 		font-size: 60px;
 		text-align: center;
 	}
+
+.inputSubmitWrapper {
+	padding-top: 100px;
+	background-color: $primary-color;
+}

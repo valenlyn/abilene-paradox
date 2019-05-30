@@ -1,5 +1,6 @@
 import React from 'react';
 import Form from './form/form';
+import Description from './description/description';
 import styles from './style.scss';
 import uuid from "uuid";
 
@@ -48,12 +49,13 @@ class Index extends React.Component {
   render() {
     return (
        <div>
-
-        <h1 className={styles.mainWrapper}>
-            ASK A QUESTION
-        </h1>
-        <Form roomName={this.state.roomName} roomInput={this.handleRoomInput} submitRoom={this.handleRoomCreation} />
-
+            <h1 className={styles.mainWrapper}>
+                ASK A QUESTION
+            </h1>
+            <div className={styles.inputSubmitWrapper}>
+                <Form roomName={this.state.roomName} roomInput={this.handleRoomInput} submitRoom={this.handleRoomCreation} />
+            </div>
+            <Description />
       </div>
     );
   }
