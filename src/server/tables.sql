@@ -3,6 +3,10 @@ CREATE TABLE IF NOT EXISTS rooms (
   id SERIAL PRIMARY KEY,
   url TEXT,
   topic TEXT,
+  num_participants INTEGER DEFAULT 0,
+  current_num_participants INTEGER DEFAULT 0,
+  user_id INTEGER DEFAULT 0,
+  status BOOLEAN DEFAULT true,
   created_at TIMESTAMPTZ DEFAULT now(),
   modified_at TIMESTAMPTZ DEFAULT now()
 );

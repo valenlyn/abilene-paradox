@@ -21,7 +21,8 @@ module.exports = (db) => {
 
         let data = {
             topic: request.body.topic,
-            url: request.body.uniqueUrl
+            url: request.body.uniqueUrl,
+            user: request.body.user
         }
 
         db.room.queryNewRoom(data, doneWithQuery);
@@ -69,10 +70,30 @@ module.exports = (db) => {
 
     }
 
+    let sendNumParticipants = (request, response) => {
+
+        const doneWithQuery = (error, result) => {
+
+        response.send(result);
+
+        }
+
+        let data = {
+            numParticipants: request.body.numParticipants,
+            roomId: request.body.roomId
+        }
+
+        console.log(data);
+
+        db.room.createOptions(data, doneWithQuery);
+
+    }
+
 
   return {
     newRoom: newRoom,
     getRoom,
-    sendOptions
+    sendOptions,
+    sendNumbParticipants
   };
 };

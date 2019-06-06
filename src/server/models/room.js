@@ -7,18 +7,14 @@ module.exports = (dbPoolInstance) => {
 
   let queryNewRoom = (data, callback) => {
 
+    if (data.user) {
+        return
+    } else {
+        data.user = 0;
+    }
 
-    console.log("************************")
-    console.log("************************")
-
-    console.log("url: ", data.url)
-    console.log("url: ", data.topic)
-    console.log("************************")
-    console.log("************************")
-
-
-    const values = [data.url, data.topic];
-    queryText = 'INSERT INTO rooms (url, topic) VALUES ($1, $2) RETURNING *';
+    const values = [data.url, data.topic, data.user];
+    queryText = 'INSERT INTO rooms (url, topic, user) VALUES ($1, $2, $3) RETURNING *';
 
     dbPoolInstance.query(queryText, values, (error, queryResult) => {
       if (error) {
@@ -34,6 +30,22 @@ module.exports = (dbPoolInstance) => {
       }
     });
   };
+
+  let insertNumParticipants = (data, callback) => {
+
+    const values = [data.numParticipants, data.roomId];
+
+    queryText = `UPDATE rooms SET num_participants=($1) WHERE id=($2)`;
+
+    dbPoolInstance.query(queryText, values, (error, queryResult) => {
+
+        if (error) {
+            callback(error, null);
+        } else {
+            callback( null, queryResult.rows );
+        }
+    })
+  }
 
   let querySpecificRoom = (data, callback) => {
 
