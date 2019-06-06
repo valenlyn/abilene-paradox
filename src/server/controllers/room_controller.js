@@ -96,7 +96,7 @@ module.exports = (db) => {
 
         let data = {
             numParticipants: request.body.numParticipants,
-            roomId: request.body.roomId
+            url: request.body.url
         }
 
         console.log(data);
