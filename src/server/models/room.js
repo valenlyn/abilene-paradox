@@ -56,6 +56,23 @@ module.exports = (dbPoolInstance) => {
     });
   }
 
+    let querySpecificRoomViaUser = (data, callback) => {
+
+        console.log(data)
+
+         dbPoolInstance.query(`SELECT * FROM rooms WHERE user_id=${data.queryUserId} AND status=true`, (error, queryResult) => {
+          if (error) {
+            // invoke callback function with results after query has executed
+            callback(error, null);
+          } else {
+            // invoke callback function with results after query has executed
+
+            callback( null, queryResult.rows );
+
+          }
+        });
+    }
+
   let createOptions = (data, callback) => {
 
     const values = [data.option, data.room_id, data.user_id];
@@ -92,6 +109,7 @@ module.exports = (dbPoolInstance) => {
     queryNewRoom,
     querySpecificRoom,
     createOptions,
-    insertNumParticipants
+    insertNumParticipants,
+    querySpecificRoomViaUser
   };
 };

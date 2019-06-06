@@ -46,6 +46,22 @@ module.exports = (db) => {
 
     };
 
+    let getRoomViaUser = (request, response) => {
+
+        const doneWithQuery = (error, result) => {
+
+        response.send(result);
+
+        }
+
+        let data = {
+            queryUserId: request.params.id,
+        }
+
+        db.room.querySpecificRoomViaUser(data, doneWithQuery);
+    }
+
+
     let sendOptions = (request, response) => {
 
 
@@ -94,6 +110,7 @@ module.exports = (db) => {
     newRoom: newRoom,
     getRoom,
     sendOptions,
-    sendNumParticipants
+    sendNumParticipants,
+    getRoomViaUser
   };
 };

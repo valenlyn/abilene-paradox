@@ -11,6 +11,7 @@ module.exports = (app, db) => {
 
   // getting information only
   app.get('/roominfo/:id', room.getRoom);
+  app.get('/userroominfo/:id', room.getRoomViaUser);
   app.get('/options/:id', option.getOptions);
   app.get('/ratings/:id', rating.getRatings);
   app.get('/ratingscore/:id', rating.getRatingsVotingPage);
