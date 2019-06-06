@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS rooms (
   url TEXT,
   topic TEXT,
   num_participants INTEGER DEFAULT 0,
-  current_num_participants INTEGER DEFAULT 0,
+  current_num_participants INTEGER DEFAULT 1,
   user_id INTEGER DEFAULT 0,
   status BOOLEAN DEFAULT true,
   created_at TIMESTAMPTZ DEFAULT now(),
