@@ -15,7 +15,7 @@ module.exports = (app, db) => {
   app.get('/ratings/:id', rating.getRatings);
   app.get('/ratingscore/:id', rating.getRatingsVotingPage);
 
-  app.post('/numparticipants/:id', room.sendNumbParticipants);
+  app.post('/numparticipants/:id', room.sendNumParticipants);
   app.post('/room/:id', room.sendOptions);
   app.post('/vote/:id', rating.sendRatings);
 

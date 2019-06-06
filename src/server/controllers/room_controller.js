@@ -21,8 +21,7 @@ module.exports = (db) => {
 
         let data = {
             topic: request.body.topic,
-            url: request.body.uniqueUrl,
-            user: request.body.user
+            url: request.body.uniqueUrl
         }
 
         db.room.queryNewRoom(data, doneWithQuery);
@@ -94,6 +93,6 @@ module.exports = (db) => {
     newRoom: newRoom,
     getRoom,
     sendOptions,
-    sendNumbParticipants
+    sendNumParticipants
   };
 };
