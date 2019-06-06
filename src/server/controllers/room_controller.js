@@ -94,9 +94,11 @@ module.exports = (db) => {
 
         }
 
+        let id = parseInt(request.params.id);
+
         let data = {
             numParticipants: request.body.numParticipants,
-            url: request.body.url
+            id: id
         }
 
         console.log(data);
