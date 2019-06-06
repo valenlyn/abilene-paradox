@@ -60,7 +60,7 @@ module.exports = (dbPoolInstance) => {
 
         console.log(data)
 
-         dbPoolInstance.query(`SELECT * FROM rooms WHERE user_id=${data.queryUserId} AND status=true`, (error, queryResult) => {
+         dbPoolInstance.query(`SELECT * FROM rooms WHERE user_id=${data.queryUserId} AND status=true ORDER BY id DESC`, (error, queryResult) => {
           if (error) {
             // invoke callback function with results after query has executed
             callback(error, null);
