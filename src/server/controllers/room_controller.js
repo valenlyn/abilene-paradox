@@ -21,7 +21,8 @@ module.exports = (db) => {
 
         let data = {
             topic: request.body.topic,
-            url: request.body.uniqueUrl
+            url: request.body.uniqueUrl,
+            user: request.body.user
         }
 
         db.room.queryNewRoom(data, doneWithQuery);

@@ -25,10 +25,11 @@ class Index extends React.Component {
         e.preventDefault();
         let url = uuid.v4();
 
-        console.log(JSON.stringify({
-                topic: this.state.roomName,
-                uniqueUrl: url
-            }))
+        // console.log(JSON.stringify({
+        //         topic: this.state.roomName,
+        //         uniqueUrl: url,
+        //         user: 10
+        //     }))
 
         fetch('/new',{
             method: 'POST',
@@ -37,7 +38,8 @@ class Index extends React.Component {
             },
             body: JSON.stringify({
                 topic: this.state.roomName,
-                uniqueUrl: url
+                uniqueUrl: url,
+                user: 0
             })
         })
         .then(response => console.log(response))

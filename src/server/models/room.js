@@ -7,8 +7,8 @@ module.exports = (dbPoolInstance) => {
 
   let queryNewRoom = (data, callback) => {
 
-    const values = [data.url, data.topic];
-    queryText = 'INSERT INTO rooms (url, topic) VALUES ($1, $2) RETURNING *';
+    const values = [data.url, data.topic, data.user];
+    queryText = 'INSERT INTO rooms (url, topic, user_id) VALUES ($1, $2, $3) RETURNING *';
 
     dbPoolInstance.query(queryText, values, (error, queryResult) => {
       if (error) {
