@@ -27,11 +27,9 @@ module.exports = (dbPoolInstance) => {
 
   let insertNumParticipants = (data, callback) => {
 
-    const values = [data.numParticipants, data.id];
+    queryText = `UPDATE rooms SET num_participants=${data.numParticipants} WHERE id=${data.id}`;
 
-    queryText = `UPDATE rooms SET num_participants=($1) WHERE id=($2)`;
-
-    dbPoolInstance.query(queryText, values, (error, queryResult) => {
+    dbPoolInstance.query(queryText, (error, queryResult) => {
 
         if (error) {
             callback(error, null);
