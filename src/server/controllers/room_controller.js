@@ -94,16 +94,14 @@ module.exports = (db) => {
 
         }
 
-        let id = parseInt(request.params.id);
-
         let data = {
             numParticipants: request.body.numParticipants,
-            id: id
+            id: request.params.id
         }
 
         console.log(data);
 
-        db.room.createOptions(data, doneWithQuery);
+        db.room.insertNumParticipants(data, doneWithQuery);
 
     }
 
