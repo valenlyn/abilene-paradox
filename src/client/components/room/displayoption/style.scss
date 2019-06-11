@@ -7,7 +7,7 @@
 }
 
 .optionCard {
-	width: 700px;
+	width: 60%;
 	margin: 10px auto;
 	padding: 10px 30px;
 	display: flex;
@@ -28,4 +28,19 @@
 	text-align: right;
 	display: flex;
 	align-items: center;
+}
+
+@media only screen and (max-width: 600px) {
+	.optionCard {
+		width: 80%;
+		font-size: 40px;
+	}
+
+	.optionCardText {
+		padding: 10px;
+		font-size: 15px;
+		display: flex;
+		align-items: center;
+	}
+
 }

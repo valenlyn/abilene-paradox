@@ -49,15 +49,15 @@ class Index extends React.Component {
     }
 
   render() {
+
     return (
        <div>
-            <h1 className={styles.mainWrapper}>
+            <h1 className={`${styles.mainWrapper}`}>
                 ASK A QUESTION
             </h1>
-            <div className={styles.inputSubmitWrapper}>
+            <div className={`${styles.inputSubmitWrapper}`}>
                 <Form roomName={this.state.roomName} roomInput={this.handleRoomInput} submitRoom={this.handleRoomCreation} />
             </div>
-            <Description />
       </div>
     );
   }

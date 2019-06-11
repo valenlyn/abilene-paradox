@@ -1,7 +1,7 @@
 @import '../../../styles/colors';
 
 .createRoomInput {
-	width: 620px;
+	width: 60%;
 	border-radius: 3px;
 	border: 4px solid $danger-color;
 	padding: 10px;
@@ -35,4 +35,19 @@
 
 .createRoomButton:hover {
 	background-color: $danger2-color;
+}
+
+@media only screen and (max-width: 600px) {
+
+	.createRoomInput {
+		width: 70%;
+		border-radius: 3px;
+		border: 4px solid $danger-color;
+		padding: 10px;
+		font-size: 10px;
+		box-shadow: 0.5px 0.5px 3px 0.5px #ff8f00;
+		display: inline;
+		margin: 10px auto;
+	}
+
 }

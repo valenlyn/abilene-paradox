@@ -12,3 +12,11 @@
 		color: $green2;
 	}
 }
+
+@media only screen and (max-width: 600px) {
+
+	.add {
+		margin: 0px 18px;
+	}
+
+}
