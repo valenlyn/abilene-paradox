@@ -115,7 +115,7 @@ class Room extends React.Component {
     render() {
 
         let invitationMessage = this.state.topic + " Let's decide!";
-        let roomUrl = `/room/${this.routeParam}`;
+        let roomUrl = `http://whatwereallywant.herokuapp.com/room/${this.routeParam}`;
         let whatsAppLink = `https://wa.me/?text=${roomUrl} %0A ${invitationMessage}`;
         let telegramLink = `https://telegram.me/share/url?url=${roomUrl}&text=${invitationMessage}`
 

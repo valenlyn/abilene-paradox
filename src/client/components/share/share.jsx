@@ -89,12 +89,6 @@ function Share(props) {
                   <ListItemText primary="WhatsApp" />
             </StyledMenuItem>
         </a>
-        <StyledMenuItem>
-          <ListItemIcon>
-            <InboxIcon />
-          </ListItemIcon>
-          <ListItemText primary="Copy Link" />
-        </StyledMenuItem>
       </StyledMenu>
     </div>
   );
