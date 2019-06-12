@@ -1,5 +1,5 @@
 .optionWrapper {
-	width: 700px;
+	width: 50%;
 	margin: 10px auto;
 	padding: 10px 30px;
 	display: flex;
@@ -15,4 +15,18 @@
 
 .displayOtherWrapper {
 	margin-top: 50px;
+}
+
+@media only screen and (max-width: 600px) {
+	.optionWrapper {
+		width: 95%;
+		padding-left: 10px;
+		padding-right: 25px;
+	}
+
+	.displayOtherWrapper {
+		padding: 5px;
+	}
+
+
 }

@@ -4,6 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Modal from '@material-ui/core/Modal';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 
 function rand() {
   return Math.round(Math.random() * 20) - 8;
@@ -13,7 +14,9 @@ function getModalStyle() {
   // const top = 50 + rand();
   // const left = 50 + rand();
   const top = 40;
-  const left = 48;
+  let left;
+
+  window.screen.availWidth > 600 ? left = 48 : left = 42;
 
   return {
     top: `${top}%`,
@@ -53,16 +56,20 @@ function ModalRandom(props) {
     <div>
 
       <button onClick={handleOpen} className={styles.randomButton}>Generate random option</button>
+      <Grid item xs={1}>
       <Modal
         aria-labelledby="simple-modal-title"
         aria-describedby="simple-modal-description"
         open={open}
         onClose={handleClose}
       >
-        <div style={modalStyle} className={classes.paper}>
-          <p class={styles.randomOption}>{props.randomOption}</p>
-        </div>
+
+            <div style={modalStyle} className={`${classes.paper} ${styles.paper}`}>
+              <p className={styles.randomOption}>{props.randomOption}</p>
+            </div>
+
       </Modal>
+      </Grid>
     </div>
   );
 }
