@@ -8,7 +8,6 @@ class Index extends React.Component {
   constructor() {
     super();
     this.state = {
-      message: 'hello',
       userId: '',
       username: '',
       roomName: ''
@@ -16,7 +15,6 @@ class Index extends React.Component {
   }
 
     handleRoomInput = e => {
-        console.log(e.target.value);
         let userRoomSubmission = e.target.value;
         this.setState({ roomName: userRoomSubmission });
     }
@@ -24,12 +22,6 @@ class Index extends React.Component {
     handleRoomCreation = e => {
         e.preventDefault();
         let url = uuid.v4();
-
-        // console.log(JSON.stringify({
-        //         topic: this.state.roomName,
-        //         uniqueUrl: url,
-        //         user: 10
-        //     }))
 
         fetch('/new',{
             method: 'POST',
@@ -42,8 +34,15 @@ class Index extends React.Component {
                 user: 0
             })
         })
-        .then(response => console.log(response))
+        // .then(response => console.log(response))
         // .then(json => console.log(json))
+        .then(res => {
+            if(res.ok) {
+              return res;
+            } else {
+              throw Error(`Request rejected with status ${res.status}`);
+            }
+          })
         .catch(error => console.log('Error: ', error))
         .then(window.location = `/room/${url}`)
     }

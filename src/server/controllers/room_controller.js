@@ -16,8 +16,9 @@ module.exports = (db) => {
         }
 
         console.log("******************REQUEST BODY**************************");
-        console.log("****************************************************");
         console.log(request.body);
+        console.log("********************************************************");
+
 
         let data = {
             topic: request.body.topic,
