@@ -22,29 +22,42 @@ class Index extends React.Component {
     handleRoomCreation = e => {
         e.preventDefault();
         let url = uuid.v4();
+        this.sendTopicAndUrl(url);
+    }
 
-        fetch('/new',{
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({
-                topic: this.state.roomName,
-                uniqueUrl: url,
-                user: 0
+    sendTopicAndUrl(url) {
+    // fetch(`/new`,{
+    //         method: 'POST',
+    //         headers: {
+    //             'Content-Type': 'application/json',
+    //         },
+    //         body: JSON.stringify({
+    //             topic: this.state.roomName,
+    //             uniqueUrl: url,
+    //             user: 0
+    //         })
+    //     })
+    //     .then(res => res.json())
+    //     .then(response => console.log('Success:', JSON.stringify(response)))
+    //     .catch(error => console.log('Error: ', error))
+    //     .then(window.location = `/room/${url}`);
+
+        fetch('/new', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    topic: this.state.roomName,
+                    uniqueUrl: url,
+                    user: 0
+                })
             })
-        })
-        // .then(response => console.log(response))
-        // .then(json => console.log(json))
-        .then(res => {
-            if(res.ok) {
-              return res;
-            } else {
-              throw Error(`Request rejected with status ${res.status}`);
-            }
-          })
-        .catch(error => console.log('Error: ', error))
-        .then(window.location = `/room/${url}`)
+            .then(response => console.log(response))
+            .then(json => console.log(json))
+            .catch(error => console.log('Error: ', error))
+            .then(window.location = `/room/${url}`);
+
     }
 
   render() {

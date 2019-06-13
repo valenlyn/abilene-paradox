@@ -10,7 +10,7 @@ module.exports = (db) => {
 
             // response.send({result: result});
             // response.cookie('room', result[0].url);
-            response.redirect(`/room/${result[0].url}`);
+            response.send(result);
             // response.body({ url: result[0].url });
 
         }

@@ -5,7 +5,7 @@ module.exports = (db) => {
     let index = (request, response) => {
 
         // let abileneUser;
-        response.render('pokemon/show');
+        response.render('index/show');
 
         // if (!request.cookies.abileneUser) {
         //     abileneUser =  uuidv4();
