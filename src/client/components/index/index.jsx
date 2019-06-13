@@ -26,26 +26,11 @@ class Index extends React.Component {
     }
 
     sendTopicAndUrl(url) {
-    // fetch(`/new`,{
-    //         method: 'POST',
-    //         headers: {
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify({
-    //             topic: this.state.roomName,
-    //             uniqueUrl: url,
-    //             user: 0
-    //         })
-    //     })
-    //     .then(res => res.json())
-    //     .then(response => console.log('Success:', JSON.stringify(response)))
-    //     .catch(error => console.log('Error: ', error))
-    //     .then(window.location = `/room/${url}`);
-
-        fetch('/new', {
+        (async () => {
+            let response = await fetch('/new', {
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': 'application/json;charset=utf-8',
                 },
                 body: JSON.stringify({
                     topic: this.state.roomName,
@@ -53,10 +38,15 @@ class Index extends React.Component {
                     user: 0
                 })
             })
-            .then(response => console.log(response))
-            .then(json => console.log(json))
-            .catch(error => console.log('Error: ', error))
-            .then(window.location = `/room/${url}`);
+
+            let result = await response.json();
+             // alert(result.message);
+            let ok = await response.ok
+                if (response.ok) {
+                    window.location = (`/room/${url}`)
+                }
+        })();
+
 
     }
 

@@ -4,21 +4,11 @@ module.exports = (db) => {
 
     let newRoom = (request, response) => {
 
-        // let uniqueUrl = uuidv4();
-
         const doneWithQuery = (error, result) => {
 
-            // response.send({result: result});
-            // response.cookie('room', result[0].url);
             response.send(result);
-            // response.body({ url: result[0].url });
 
         }
-
-        console.log("******************REQUEST BODY**************************");
-        console.log(request.body);
-        console.log("********************************************************");
-
 
         let data = {
             topic: request.body.topic,
